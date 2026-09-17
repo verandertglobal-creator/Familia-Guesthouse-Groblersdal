@@ -98,13 +98,13 @@
             margin-top: 0.2rem;
         }
 
-        /* Detail Banner Image for Events */
-        .facility-detail-banner {
+        /* Event Detail Banner Image */
+        .event-detail-banner {
             width: 100%;
             height: 160px;
-            border-radius: 12px;
+            border-radius: 14px;
             object-fit: cover;
-            margin-bottom: 0.6rem;
+            margin-bottom: 1rem;
             border: 1px solid var(--border);
         }
 
@@ -294,7 +294,7 @@
             text-align: center;
         }
 
-        /* Icon Amenities Grid */
+        /* Amenities Modal Grid */
         .amenities-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -462,6 +462,9 @@
                 <button class="widget-btn" onclick="openModal('emergency')">
                     🚨 Emergency Info
                 </button>
+                <button class="widget-btn" onclick="openModal('checkout')">
+                    🔑 Express Check-Out
+                </button>
                 <button class="widget-btn highlight full-width" onclick="openModal('socials')">
                     🌐 Our Website & Links
                 </button>
@@ -533,6 +536,7 @@
             { title: "Verandah", icon: "bi-sun" }
         ];
 
+        // Parse URL Parameters (e.g. ?guest=John&room=Room%204)
         function parseURLParameters() {
             const params = new URLSearchParams(window.location.search);
             if (params.has('guest')) guestName = params.get('guest');
@@ -561,6 +565,7 @@
             modal.style.display = 'flex';
         }
 
+        // Groblersdal Local Attractions
         const eventData = [
             {
                 id: 0,
@@ -641,6 +646,7 @@
             }
         }
 
+        // Open-Meteo Weather for Groblersdal
         async function load7DayWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-25.1625&longitude=29.3903&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Africa%2FJohannesburg');
@@ -708,7 +714,7 @@
             submitBtn.style.display = "none";
 
             body.innerHTML = `
-                <img src="${ev.image}" class="facility-detail-banner" alt="${ev.title}">
+                <img src="${ev.image}" class="event-detail-banner" alt="${ev.title}">
                 <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.8rem; line-height:1.4;">${ev.desc}</p>
                 <div style="background:#0F172A; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
                     <p style="margin-bottom:0.4rem;">📍 <strong>Address:</strong> ${ev.address}</p>
@@ -754,7 +760,7 @@
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'facilities') {
-                title.innerText = "Guesthouse Facilities";
+                title.innerText = "Guest Facilities";
                 let facHTML = `<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem; text-align:center;">Amenities available at Familia Guesthouse:</p><div class="amenities-grid">`;
                 
                 facilitiesList.forEach(item => {
@@ -902,6 +908,7 @@
             closeModal();
         }
 
+        // Initialize Page
         window.addEventListener('DOMContentLoaded', () => {
             parseURLParameters();
             load7DayWeather();
