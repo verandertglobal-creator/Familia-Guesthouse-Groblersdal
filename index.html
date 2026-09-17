@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Guest Portal | Familia Guesthouse</title>
+    <title>Familia Guesthouse & Boutique Hotel | Guest Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,7 +22,7 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
-                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+                        url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
             color: var(--text-main);
             display: flex;
             justify-content: center;
@@ -53,7 +53,7 @@
             padding: 2rem 1rem 1.5rem;
             text-align: center;
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.92) 100%),
-                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+                        url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
         }
@@ -75,7 +75,7 @@
 
         .hero-banner h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 700;
             color: #FFF;
             text-shadow: 0 2px 10px rgba(0,0,0,0.7);
@@ -242,9 +242,7 @@
             transition: all 0.15s;
         }
 
-        .qty-btn:hover {
-            background: var(--accent);
-        }
+        .qty-btn:hover { background: var(--accent); }
 
         .qty-val {
             font-size: 0.9rem;
@@ -337,10 +335,10 @@
     <div class="widget-container">
         <!-- Hero Accommodation Banner -->
         <div class="hero-banner">
-            <span class="badge">Groblersdal Hospitality</span>
+            <span class="badge">Groblersdal • Sekhukhune</span>
             <h1>Familia Guesthouse</h1>
             <div class="guest-welcome-subtitle" id="bannerWelcomeText">Welcome, Guest!</div>
-            <p>Boutique Hotel Digital Portal</p>
+            <p>Boutique Accommodation Portal</p>
         </div>
 
         <!-- Check-In Banner -->
@@ -363,7 +361,7 @@
         <div class="tab-content active" id="quick-access">
             <div class="widget-grid">
                 <button class="widget-btn highlight full-width" onclick="openGateDemo()">
-                    🔒 Open Main Gate (Remootio)
+                    🔒 Open Main Security Gate
                 </button>
                 <button class="widget-btn" onclick="openModal('wifi')">
                     📶 Wi-Fi Access
@@ -375,7 +373,7 @@
                     🧹 Housekeeping
                 </button>
                 <button class="widget-btn" onclick="openModal('loadshedding')">
-                    ⚡ Power / Loadshedding
+                    ⚡ Solar / Power Status
                 </button>
                 <button class="widget-btn" onclick="openModal('issue')">
                     🛠 Report Issue
@@ -390,10 +388,10 @@
                     🔑 Express Check-Out
                 </button>
                 <button class="widget-btn highlight full-width" onclick="openModal('socials')">
-                    🌐 Our Social Media
+                    🌐 Our Website & Links
                 </button>
                 <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
-                    💬 Chat with Host (WhatsApp)
+                    💬 Chat with Reception (WhatsApp)
                 </button>
             </div>
         </div>
@@ -405,7 +403,7 @@
 
         <!-- TAB 3: LOCAL EVENTS & WHAT TO DO -->
         <div class="tab-content" id="events-tab">
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">Select an option below for Groblersdal & surrounds:</p>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">Attractions & spots near Familia Guesthouse:</p>
             <div id="eventsList"></div>
         </div>
 
@@ -425,22 +423,20 @@
     </div>
 
     <script>
-        const HOST_PHONE = "27828215975";
+        const HOST_PHONE = "27828215975"; // Update to Familia Guesthouse reception number if preferred
         let guestName = "Guest";
-        let roomNumber = "Your Room";
+        let roomNumber = "Room";
         let currentModalType = "";
 
         let foodQuantities = {
             "Full English Breakfast": 0,
-            "Continental Platter": 0,
-            "Omelette Special": 0,
+            "Continental Breakfast": 0,
+            "Omelette with Cheese & Bacon": 0,
             "Fresh Brewed Coffee": 0,
-            "Fresh Orange Juice": 0,
-            "Fresh Mango Juice": 0,
-            "Fresh Apple Juice": 0
+            "Fresh Juice": 0
         };
 
-        // Parse URL Parameters (e.g. ?guest=John&room=Suite%201)
+        // Parse URL Parameters (e.g. ?guest=John&room=Room%204)
         function parseURLParameters() {
             const params = new URLSearchParams(window.location.search);
             if (params.has('guest')) guestName = params.get('guest');
@@ -462,7 +458,7 @@
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
                     <p style="font-size:1.05rem; font-weight:600; color:#FDBA74; margin-bottom:0.6rem;">Hello ${guest}!</p>
-                    <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Use this digital portal to open gates, order breakfast, check local weather, or message us directly.</p>
+                    <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order breakfast, or get in touch with reception.</p>
                 </div>
             `;
 
@@ -474,32 +470,32 @@
             {
                 id: 0,
                 title: "Loskop Dam Nature Reserve",
-                spot: "N11 Highway, Groblersdal District",
+                spot: "N11 Highway, Groblersdal",
                 promoted: true,
                 image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-                desc: "Enjoy game viewing, boat cruises, and birdwatching on the shores of Loskop Dam.",
-                address: "N11 South, Groblersdal, 0470",
+                desc: "Explore a 23,000-hectare nature reserve with guided boat cruises, game viewing, and fishing on Loskop Dam.",
+                address: "N11 South, Groblersdal District",
                 time: "Open Daily • 06:00 to 18:00"
             },
             {
                 id: 1,
                 title: "Groblersdal Golf Club",
-                spot: "Groblersdal Town Center",
+                spot: "Groblersdal Town",
                 promoted: true,
                 image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80",
-                desc: "Championship 9-hole golf course nestled along the Olifants River valley.",
-                address: "Golf Course Road, Groblersdal, 0470",
+                desc: " Scenic 9-hole golf course located along the Olifants River basin in Groblersdal.",
+                address: "Golf Course Rd, Groblersdal, 0470",
                 time: "Tee Times: 07:00 – 17:00 Daily"
             },
             {
                 id: 2,
-                title: "Olifants River Citrus Tour",
-                spot: "Valley Farms, Groblersdal",
+                title: "Olifants River Valley Farming & Citrus",
+                spot: "Groblersdal Irrigation Area",
                 promoted: false,
                 image: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=800&q=80",
-                desc: "Explore agricultural orchards producing world-class citrus and table grapes in the Loskop Irrigation Scheme.",
-                address: "R33, Groblersdal Agricultural Zone",
-                time: "Daylight Hours"
+                desc: "Drive along the lush irrigation canal valleys producing citrus, table grapes, and cotton.",
+                address: "R33 / R573 Routes, Groblersdal",
+                time: "Accessible 24/7"
             }
         ];
 
@@ -607,7 +603,7 @@
                 <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.8rem; line-height:1.4;">${ev.desc}</p>
                 <div style="background:#0F172A; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
                     <p style="margin-bottom:0.4rem;">📍 <strong>Address:</strong> ${ev.address}</p>
-                    <p>🕒 <strong>Hours / Schedule:</strong> ${ev.time}</p>
+                    <p>🕒 <strong>Hours:</strong> ${ev.time}</p>
                 </div>
             `;
 
@@ -621,12 +617,12 @@
         }
 
         function openWhatsApp() {
-            const msg = `Hi! I am ${guestName} staying in ${roomNumber}. I have a general question regarding my stay.`;
+            const msg = `Hi Reception, I am ${guestName} staying in ${roomNumber}. I have a general question regarding my stay.`;
             window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, "_blank");
         }
 
         function openGateDemo() {
-            const msg = `*Gate Access Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nAction: Open Main Gate`;
+            const msg = `*Gate Access Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nAction: Please open main gate`;
             window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, "_blank");
         }
 
@@ -639,7 +635,7 @@
             submitBtn.style.display = "block";
 
             if(type === 'wifi') {
-                title.innerText = "Wi-Fi Credentials";
+                title.innerText = "Wi-Fi Access";
                 body.innerHTML = `
                     <div style="background:#0F172A; padding:1rem; border-radius:10px; border:1px solid var(--border); margin-bottom:1rem;">
                         <p style="font-size:0.85rem; margin-bottom:0.4rem;">Network: <strong>Familia_Guest_WiFi</strong></p>
@@ -649,10 +645,10 @@
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'socials') {
-                title.innerText = "Our Social Media";
+                title.innerText = "Familia Guesthouse Links";
                 body.innerHTML = `
-                    <a href="https://www.facebook.com/" target="_blank" class="social-link-btn" style="background:#1877F2;">Facebook</a>
-                    <a href="https://www.instagram.com/" target="_blank" class="social-link-btn" style="background:#E4405F;">Instagram</a>
+                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-link-btn" style="background:#D97706;">Official Website</a>
+                    <a href="https://www.booking.com/hotel/za/familia-guesthouse.en-gb.html" target="_blank" class="social-link-btn" style="background:#003580;">Booking.com Page</a>
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'breakfast') {
@@ -674,42 +670,42 @@
                 });
 
                 foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Delivery Time:</label>
-                    <input type="time" id="bfTime" value="08:30">
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Breakfast Time:</label>
+                    <input type="time" id="bfTime" value="07:30">
                 `;
                 body.innerHTML = foodHTML;
             } else if(type === 'housekeeping') {
-                title.innerText = `Housekeeping Request (${roomNumber})`;
+                title.innerText = `Housekeeping (${roomNumber})`;
                 body.innerHTML = `
-                    <label style="font-size:0.8rem; color:var(--text-muted);">Service Required:</label>
+                    <label style="font-size:0.8rem; color:var(--text-muted);">Select Service:</label>
                     <select id="hkOption">
-                        <option>Fresh Towels</option>
+                        <option>Fresh Bath Towels</option>
                         <option>Full Room Cleaning</option>
-                        <option>Extra Pillows & Linen</option>
-                        <option>Refill Coffee & Tea Station</option>
+                        <option>Extra Pillows & Blankets</option>
+                        <option>Refill Coffee/Tea Station</option>
                     </select>
                 `;
             } else if(type === 'loadshedding') {
-                title.innerText = "Power & Backup Schedule";
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Groblersdal Grid: <strong>Stage 0</strong><br>Solar & Generator Backup Active.</p>`;
+                title.innerText = "Power & Backup Status";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Groblersdal Grid Status: <strong>Normal</strong><br>Solar and backup inverter system active for Wi-Fi, TV, and room lights.</p>`;
                 submitBtn.style.display = "none";
             } else if(type === 'issue') {
                 title.innerText = `Report Issue (${roomNumber})`;
                 body.innerHTML = `
-                    <label style="font-size:0.8rem; color:var(--text-muted);">Describe the issue:</label>
-                    <textarea id="issueText" rows="3" placeholder="e.g., Hot water issue, aircon remote battery..."></textarea>
+                    <label style="font-size:0.8rem; color:var(--text-muted);">Describe problem:</label>
+                    <textarea id="issueText" rows="3" placeholder="e.g. Aircon remote, hot water, extra towel needed..."></textarea>
                 `;
             } else if(type === 'manual') {
-                title.innerText = "House Manual";
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted);">• Aircon: Remote bracket next to door.<br>• Dining Hours: 07:00 – 09:30 daily.<br>• Reception Desk: Dial 0 from room phone.</p>`;
+                title.innerText = "House Manual & Amenities";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">• <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>• <strong>Aircon:</strong> Controls located on room wall.<br>• <strong>Braai:</strong> Garden braai facilities available on request.<br>• <strong>Parking:</strong> Secure free parking on site.</p>`;
                 submitBtn.style.display = "none";
             } else if(type === 'emergency') {
                 title.innerText = "Emergency Numbers";
-                body.innerHTML = `<p style="font-size:0.85rem;">• Groblersdal Police: 013 262 8300<br>• Medical Emergency: 10177<br>• Management Direct: +27 82 821 5975</p>`;
+                body.innerHTML = `<p style="font-size:0.85rem; line-height:1.6;">• Groblersdal Police: 013 262 8300<br>• Medical Emergency: 10177<br>• Reception Direct: +27 82 821 5975</p>`;
                 submitBtn.style.display = "none";
             } else if(type === 'checkout') {
                 title.innerText = `Express Check-Out (${roomNumber})`;
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Ready to depart, ${guestName}? Tap submit below to notify reception.</p>`;
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Checking out today, ${guestName}? Tap submit to notify reception and drop keys.</p>`;
             }
 
             modal.style.display = 'flex';
@@ -717,7 +713,7 @@
 
         function copyWifi() {
             navigator.clipboard.writeText("Familia2026!");
-            alert("Password copied to clipboard!");
+            alert("Wi-Fi password copied!");
         }
 
         function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
@@ -735,7 +731,7 @@
                 });
 
                 if (selectedItems.length === 0) {
-                    alert("Please select at least one item quantity using the + button.");
+                    alert("Please select at least one item using the + button.");
                     return;
                 }
 
@@ -747,7 +743,7 @@
                 const issue = document.getElementById('issueText').value;
                 message = `*Maintenance Issue Reported*\nGuest: ${guestName}\nRoom: ${roomNumber}\nDetails: ${issue}`;
             } else if (currentModalType === 'checkout') {
-                message = `*Express Check-Out Notification*\nGuest: ${guestName}\nRoom: ${roomNumber}\nStatus: Keys dropped / Ready to check out`;
+                message = `*Express Check-Out Notification*\nGuest: ${guestName}\nRoom: ${roomNumber}\nStatus: Ready to check out`;
             }
 
             if (message) {
@@ -756,7 +752,7 @@
             closeModal();
         }
 
-        // Initialize Page & Modal Triggers
+        // Initialize Page
         window.addEventListener('DOMContentLoaded', () => {
             parseURLParameters();
             load7DayWeather();
