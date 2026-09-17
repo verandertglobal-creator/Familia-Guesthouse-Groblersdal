@@ -203,6 +203,48 @@
         .widget-btn.full-width { grid-column: span 2; }
         .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
 
+        /* House Manual Styling */
+        .manual-section {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .manual-section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #FDBA74;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.3rem;
+        }
+
+        .manual-list {
+            list-style: none;
+            font-size: 0.78rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .manual-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .manual-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         /* Transparency Box */
         .transparency-box {
             background: rgba(15, 23, 42, 0.9);
@@ -1062,16 +1104,76 @@
                     <textarea id="issueText" rows="3" placeholder="e.g. Aircon remote, hot water, extra towel needed..."></textarea>
                 `;
             } else if(type === 'manual') {
-                title.innerText = "House Manual & Dining Info";
+                title.innerText = "House Manual & Rules";
                 body.innerHTML = `
-                    <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:0.8rem;">
-                        • <strong>Breakfast:</strong> Complimentary for booked guests.<br>
-                        • <strong>Dinner & Bar:</strong> Served on request.<br>
-                        • <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>
-                        • <strong>Aircon:</strong> Controls located on room wall.<br>
-                        • <strong>Braai:</strong> Garden braai facilities available on request.<br>
-                        • <strong>Parking:</strong> Secure free parking on site.
-                    </p>
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-info-circle"></i> General Rules</div>
+                        <ul class="manual-list">
+                            <li>Guests have no access to rooms marked <strong>"Staff Only"</strong>.</li>
+                            <li>Living room, dining room, pool, and braai area are common areas.</li>
+                            <li>Cooking/flammables in guest rooms are strictly prohibited.</li>
+                            <li>Guest rooms may not be used for commercial/business activities.</li>
+                            <li>Pets are strictly not allowed on the property.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-cup-hot"></i> Dining Services</div>
+                        <ul class="manual-list">
+                            <li><strong>Breakfast:</strong> Served in dining room/patio from <strong>07h00 - 09h00</strong>. Advise arrival if alternate timing is required.</li>
+                            <li><strong>Dinner:</strong> Served <strong>19h00 - 20h00</strong> at extra cost. Pre-book at reception by <strong>13h00</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-p-square"></i> Parking & Gate</div>
+                        <ul class="manual-list">
+                            <li>Free undercover parking available for all guests.</li>
+                            <li><strong>Motorized Gate:</strong> Do not park in the pathway; closes automatically after a few seconds.</li>
+                            <li>Do not leave valuables in parked vehicles. Management accepts no responsibility for loss.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-no-smoking"></i> Smoking Policy</div>
+                        <ul class="manual-list">
+                            <li>Smoking is <strong>strictly forbidden inside</strong> the house.</li>
+                            <li>Permitted outside in designated yard/braai areas using provided ashtrays.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-water"></i> Plumbing Guidelines</div>
+                        <ul class="manual-list">
+                            <li>Only toilet paper may be flushed.</li>
+                            <li>No wipes, sanitary items, or cotton buds down toilets.</li>
+                            <li>Blockage clearance costs will be charged to the guest.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-volume-mute"></i> Noise & Quiet Hours</div>
+                        <ul class="manual-list">
+                            <li>Strict quiet hours apply from <strong>22h00 to 08h00</strong>.</li>
+                            <li>No loud audio/music that disturbs other guests.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-tsunami"></i> Pool & Braai Area</div>
+                        <ul class="manual-list">
+                            <li><strong>Pool Hours:</strong> 08h00 to 20h00 (Use at own risk; children must be supervised).</li>
+                            <li><strong>Braai Area:</strong> Clean after use. Never leave open flames unattended.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-shield-lock"></i> Security & Policies</div>
+                        <ul class="manual-list">
+                            <li>In-room safes provided. Always lock doors when leaving.</li>
+                            <li>Turn off lights/taps when leaving to conserve power and water.</li>
+                        </ul>
+                    </div>
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'emergency') {
