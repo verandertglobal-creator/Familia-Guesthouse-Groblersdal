@@ -536,11 +536,15 @@
             { title: "Verandah", icon: "bi-sun" }
         ];
 
-        // Parse URL Parameters (e.g. ?guest=John&room=Room%204)
+        // Parse URL Parameters (e.g. ?guest=Johann&room=Room%20101)
         function parseURLParameters() {
             const params = new URLSearchParams(window.location.search);
-            if (params.has('guest')) guestName = params.get('guest');
-            if (params.has('room')) roomNumber = params.get('room');
+            if (params.has('guest') && params.get('guest').trim() !== '') {
+                guestName = params.get('guest').trim();
+            }
+            if (params.has('room') && params.get('room').trim() !== '') {
+                roomNumber = params.get('room').trim();
+            }
 
             document.getElementById('bannerWelcomeText').innerText = `Welcome, ${guestName}! (${roomNumber})`;
             document.getElementById('checkinTitle').innerText = `${guestName} • ${roomNumber}`;
