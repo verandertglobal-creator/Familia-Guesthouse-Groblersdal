@@ -465,37 +465,57 @@
             modal.style.display = 'flex';
         }
 
-        // Groblersdal Local Attractions
+        // Groblersdal Local Attractions (via SA-Venues)
         const eventData = [
             {
                 id: 0,
                 title: "Loskop Dam Nature Reserve",
-                spot: "N11 Highway, Groblersdal",
+                spot: "N11 South, Groblersdal Area",
                 promoted: true,
                 image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-                desc: "Explore a 23,000-hectare nature reserve with guided boat cruises, game viewing, and fishing on Loskop Dam.",
-                address: "N11 South, Groblersdal District",
+                desc: "A massive 23,000-hectare reserve situated along the 27km-long Loskop Dam. Home to over 70 mammal species and abundant birdlife, offering guided boat trips, game viewing, and fishing.",
+                address: "N11 Highway, Loskop Dam Area",
                 time: "Open Daily • 06:00 to 18:00"
             },
             {
                 id: 1,
                 title: "Groblersdal Golf Club",
-                spot: "Groblersdal Town",
+                spot: "Town Centre, Groblersdal",
                 promoted: true,
                 image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80",
-                desc: " Scenic 9-hole golf course located along the Olifants River basin in Groblersdal.",
-                address: "Golf Course Rd, Groblersdal, 0470",
+                desc: "Set in South Africa's second-largest irrigation settlement, this scenic golf course offers a relaxed 9 or 18-hole round surrounded by lush citrus and farming valleys.",
+                address: "Golf Course Rd, Groblersdal",
                 time: "Tee Times: 07:00 – 17:00 Daily"
             },
             {
                 id: 2,
-                title: "Olifants River Valley Farming & Citrus",
-                spot: "Groblersdal Irrigation Area",
+                title: "Mkhombo Nature Reserve",
+                spot: "Near Groblersdal / Middelburg",
                 promoted: false,
-                image: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=800&q=80",
-                desc: "Drive along the lush irrigation canal valleys producing citrus, table grapes, and cotton.",
-                address: "R33 / R573 Routes, Groblersdal",
-                time: "Accessible 24/7"
+                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80",
+                desc: "Nestled among rolling hills and open Highveld grassland, this peaceful reserve surrounds the Mkhombo Dam and is renowned for tranquil birdwatching and scenic drives.",
+                address: "Mkhombo Dam Access Rd, Mpumalanga",
+                time: "Open Daily • Sunrise to Sunset"
+            },
+            {
+                id: 3,
+                title: "Buffalo Gorge 4x4 & Adventure",
+                spot: "Avontuur Farm, Near Loskop Dam",
+                promoted: false,
+                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
+                desc: "Outdoor adventure destination offering wilderness 4x4 trails, abseiling, horse riding, mountain biking, and hiking along scenic rock formations.",
+                address: "Avontuur Farm, Middelburg / Groblersdal District",
+                time: "Day Visitors: 08:00 – 17:00"
+            },
+            {
+                id: 4,
+                title: "Rooikrans & Cycad Hiking Trails",
+                spot: "Olifants River Gorge",
+                promoted: false,
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                desc: "Multi-day and day trails meandering through the Olifants River Gorge, featuring ancient Lanatus Cycad populations unique to the Mpumalanga Cultural Heartland.",
+                address: "Olifants River Gorge, Groblersdal Region",
+                time: "Bookings required for guided hikes"
             }
         ];
 
@@ -566,18 +586,13 @@
         }
 
         function load7DayEvents() {
-            const today = new Date();
             let html = '';
-            eventData.forEach((ev, index) => {
-                const evDate = new Date();
-                evDate.setDate(today.getDate() + index);
-                const dateStr = evDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-                
+            eventData.forEach((ev) => {
                 html += `
                     <div class="list-card" onclick="openEventDetail(${ev.id})">
                         <div>
                             <strong>${ev.title}</strong> ${ev.promoted ? '<span class="badge-promoted">Featured</span>' : ''}<br>
-                            <span style="font-size:0.75rem; color:var(--text-muted);">📍 ${ev.spot} • ${dateStr}</span>
+                            <span style="font-size:0.75rem; color:var(--text-muted);">📍 ${ev.spot}</span>
                         </div>
                         <span style="color:var(--accent); font-weight:700; font-size:0.9rem;">→</span>
                     </div>
