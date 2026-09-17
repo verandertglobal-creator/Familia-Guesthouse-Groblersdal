@@ -97,13 +97,13 @@
             margin-top: 0.2rem;
         }
 
-        /* Event Detail Banner Image */
-        .event-detail-banner {
+        /* Event & Facility Detail Banner Image */
+        .facility-detail-banner {
             width: 100%;
             height: 160px;
-            border-radius: 14px;
+            border-radius: 12px;
             object-fit: cover;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
             border: 1px solid var(--border);
         }
 
@@ -293,6 +293,27 @@
             text-align: center;
         }
 
+        /* Facility Card Item */
+        .facility-card {
+            background: #0F172A;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .facility-card h4 {
+            font-size: 0.95rem;
+            color: #FDBA74;
+            margin-bottom: 0.3rem;
+        }
+
+        .facility-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
         /* Event & Weather Cards */
         .list-card {
             background: rgba(15, 23, 42, 0.5);
@@ -345,7 +366,7 @@
             border-radius: 20px; 
             padding: 1.5rem; 
             width: 100%; 
-            max-width: 420px;
+            max-width: 440px;
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
@@ -411,6 +432,9 @@
                 <button class="widget-btn" onclick="openModal('breakfast')">
                     🍳 Meals & Drinks
                 </button>
+                <button class="widget-btn" onclick="openModal('facilities')">
+                    🏨 Guest Facilities
+                </button>
                 <button class="widget-btn" onclick="openModal('housekeeping')">
                     🧹 Housekeeping
                 </button>
@@ -425,9 +449,6 @@
                 </button>
                 <button class="widget-btn" onclick="openModal('emergency')">
                     🚨 Emergency Info
-                </button>
-                <button class="widget-btn" onclick="openModal('checkout')">
-                    🔑 Express Check-Out
                 </button>
                 <button class="widget-btn highlight full-width" onclick="openModal('socials')">
                     🌐 Our Website & Links
@@ -478,6 +499,44 @@
             "Fresh Brewed Coffee": 0,
             "Fresh Juice": 0
         };
+
+        const facilitiesData = [
+            {
+                title: "Breakfast Area",
+                desc: "Indulge in a tranquil breakfast experience amidst the soothing melodies of nature's finest singers.",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Lounge Area",
+                desc: "Unwind and relax in our inviting lounge area, thoughtfully designed for the ultimate comfort of our guests.",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "La'Bush Bar",
+                desc: "Welcome to our vibrant bar, where every visit promises an unforgettable experience!",
+                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Restaurant & Conference Centre",
+                desc: "Experience culinary delight in our charming guesthouse restaurant and elevate your next event at our versatile conference centre.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Swimming Pool Area",
+                desc: "Dive into relaxation at our serene swimming pool area, surrounded by lush greenery and bathed in natural sunlight.",
+                image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Solar-Powered Operations",
+                desc: "Embrace sustainability amidst scenic surroundings. Our solar energy system ensures an uninterrupted, comfortable stay.",
+                image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Tranquil Oasis Garden",
+                desc: "Step into tranquility as you explore the lush oasis of our guesthouse garden adorned with vibrant blooms and cozy seating.",
+                image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
 
         // Parse URL Parameters (e.g. ?guest=John&room=Room%204)
         function parseURLParameters() {
@@ -657,7 +716,7 @@
             submitBtn.style.display = "none";
 
             body.innerHTML = `
-                <img src="${ev.image}" class="event-detail-banner" alt="${ev.title}">
+                <img src="${ev.image}" class="facility-detail-banner" alt="${ev.title}">
                 <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.8rem; line-height:1.4;">${ev.desc}</p>
                 <div style="background:#0F172A; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
                     <p style="margin-bottom:0.4rem;">📍 <strong>Address:</strong> ${ev.address}</p>
@@ -702,10 +761,27 @@
                     <button class="btn-submit" onclick="copyWifi()">📋 Copy Password to Clipboard</button>
                 `;
                 submitBtn.style.display = "none";
+            } else if(type === 'facilities') {
+                title.innerText = "Guesthouse Facilities";
+                let facHTML = `<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Explore the amenities available during your stay at Familia Guesthouse:</p>`;
+                
+                facilitiesData.forEach(item => {
+                    facHTML += `
+                        <div class="facility-card">
+                            <img src="${item.image}" class="facility-detail-banner" alt="${item.title}">
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                        </div>
+                    `;
+                });
+                
+                body.innerHTML = facHTML;
+                submitBtn.style.display = "none";
             } else if(type === 'socials') {
                 title.innerText = "Familia Guesthouse Links";
                 body.innerHTML = `
                     <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-link-btn" style="background:#D97706;">Official Website</a>
+                    <a href="https://www.familiaguesthouse.co.za/pages/facilities/" target="_blank" class="social-link-btn" style="background:#475569;">Explore Facilities Webpage</a>
                     <a href="https://www.booking.com/hotel/za/familia-guesthouse.en-gb.html" target="_blank" class="social-link-btn" style="background:#003580;">Booking.com Page</a>
                 `;
                 submitBtn.style.display = "none";
