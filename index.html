@@ -1,140 +1,197 @@
-<!-- Guesthouse Facilities Section -->
-<section id="facilities" class="py-5 bg-light">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold">Guesthouse Facilities</h2>
-      <p class="text-muted">Everything you need for a comfortable and relaxing stay.</p>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guesthouse Amenities</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    .amenity-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-color: #e9ecef;
+    }
+    .amenity-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+    }
+    .amenity-icon {
+      color: #b38b59; /* Matching the warm gold icon color from your images */
+    }
+  </style>
+</head>
+<body class="bg-light">
 
-    <!-- Amenities Grid -->
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 text-center">
+  <!-- Navigation Bar Placeholder -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Guesthouse</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Guesthouse Facilities Section -->
+  <section id="facilities" class="py-5">
+    <div class="container py-4">
       
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-shield-check fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">24-hour Security</span>
-        </div>
+      <!-- Section Header -->
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-2">Guesthouse Facilities</h2>
+        <p class="text-muted fs-5">Everything you need for a comfortable and relaxing stay</p>
+        <hr class="w-25 mx-auto text-muted">
       </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-snow fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Air Conditioning</span>
+      <!-- Amenities Grid -->
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4 text-center">
+        
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-shield-check display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">24-hour Security</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-eye fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Bird Watching</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-snow display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Air Conditioning</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-stars fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Cleaning Services</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-wifi display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Complimentary Wi-Fi</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-people fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Communal Dining</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-person-wheelchair display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Disability Services</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-wifi fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Complimentary Wi-Fi</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-water display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Swimming Pool</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-credit-card fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Credit Card Facilities</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-tv display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Satellite / Cable TV</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-cup-hot fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Dinner on Request</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-p-square display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Parking (covered & secure)</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-person-wheelchair fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Disability Services</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-binoculars display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Bird Watching</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-recycle fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Eco Friendly</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-stars display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Cleaning Services</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-plug fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Electrical Outlets</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-cup-hot display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Communal Dining</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-box fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Fridge</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-credit-card display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Credit Card Facilities</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-square fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Iron & Ironing Board</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-egg-fried display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Dinner on Request</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-journal-text fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Lounge Area</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-recycle display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Eco Friendly</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-p-square fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Parking (covered & secure)</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-plug display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Electrical Outlets</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-tv fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Satellite / Cable Television</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-box-seam display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Fridge</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-water fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Swimming Pool</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-border-style display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Iron & Ironing Board</span>
+          </div>
         </div>
-      </div>
 
-      <div class="col">
-        <div class="p-3 border rounded bg-white h-100 shadow-sm d-flex flex-column align-items-center justify-content-center">
-          <i class="bi bi-sun fs-2 text-primary mb-2"></i>
-          <span class="fw-medium">Verandah</span>
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-couch display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Lounge Area</span>
+          </div>
         </div>
-      </div>
 
+        <div class="col">
+          <div class="p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column align-items-center justify-content-center amenity-card">
+            <i class="bi bi-sun display-6 mb-3 amenity-icon"></i>
+            <span class="fw-medium text-secondary">Verandah</span>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Footer Placeholder -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; Guesthouse. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
