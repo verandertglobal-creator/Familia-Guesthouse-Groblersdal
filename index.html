@@ -202,6 +202,48 @@
         .widget-btn.full-width { grid-column: span 2; }
         .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
 
+        /* Transparency Box */
+        .transparency-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .transparency-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #FDBA74;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .transparency-list {
+            list-style: none;
+            font-size: 0.78rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .transparency-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .transparency-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         /* Food Quantity Counter Controls */
         .food-item-row {
             display: flex;
@@ -367,7 +409,7 @@
                     📶 Wi-Fi Access
                 </button>
                 <button class="widget-btn" onclick="openModal('breakfast')">
-                    🍳 Order Breakfast
+                    🍳 Meals & Drinks
                 </button>
                 <button class="widget-btn" onclick="openModal('housekeeping')">
                     🧹 Housekeeping
@@ -431,7 +473,8 @@
         let foodQuantities = {
             "Full English Breakfast": 0,
             "Continental Breakfast": 0,
-            "Omelette with Cheese & Bacon": 0,
+            "Dinner (R200/person)": 0,
+            "Soft Drinks (R17.50 each)": 0,
             "Fresh Brewed Coffee": 0,
             "Fresh Juice": 0
         };
@@ -458,14 +501,14 @@
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
                     <p style="font-size:1.05rem; font-weight:600; color:#FDBA74; margin-bottom:0.6rem;">Hello ${guest}!</p>
-                    <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order breakfast, or get in touch with reception.</p>
+                    <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
                 </div>
             `;
 
             modal.style.display = 'flex';
         }
 
-        // Groblersdal Local Attractions (via SA-Venues)
+        // Groblersdal Local Attractions
         const eventData = [
             {
                 id: 0,
@@ -546,7 +589,7 @@
             }
         }
 
-        // Open-Meteo Weather for Groblersdal (-25.1625, 29.3903)
+        // Open-Meteo Weather for Groblersdal
         async function load7DayWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-25.1625&longitude=29.3903&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Africa%2FJohannesburg');
@@ -627,7 +670,7 @@
 
         function updateFoodQty(itemName, delta) {
             foodQuantities[itemName] = Math.max(0, (foodQuantities[itemName] || 0) + delta);
-            const el = document.getElementById(`qty-${itemName.replace(/\s+/g, '')}`);
+            const el = document.getElementById(`qty-${itemName.replace(/[^a-zA-Z0-9]/g, '')}`);
             if (el) el.innerText = foodQuantities[itemName];
         }
 
@@ -667,11 +710,24 @@
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'breakfast') {
-                title.innerText = `Order Breakfast (${roomNumber})`;
-                let foodHTML = `<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem;">Select item quantities below:</p>`;
+                title.innerText = `Order Meals & Drinks (${roomNumber})`;
+                let foodHTML = `
+                    <div class="transparency-box">
+                        <div class="transparency-title">🔍 Transparency & Pricing Rules</div>
+                        <ul class="transparency-list">
+                            <li><strong>Breakfast:</strong> Complimentary for all booked guests.</li>
+                            <li><strong>Visiting Guests:</strong> Guests visiting from outside are welcome to join for breakfast at R200 per person.</li>
+                            <li><strong>Dinner:</strong> R200 per person.</li>
+                            <li><strong>Soft Drinks:</strong> R17.50 each.</li>
+                            <li><strong>Child Policy:</strong> Children 0 - 3 Free • Children 15 years Full price.</li>
+                        </ul>
+                    </div>
+
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem;">Select item quantities:</p>
+                `;
                 
                 Object.keys(foodQuantities).forEach(item => {
-                    const cleanId = `qty-${item.replace(/\s+/g, '')}`;
+                    const cleanId = `qty-${item.replace(/[^a-zA-Z0-9]/g, '')}`;
                     foodHTML += `
                         <div class="food-item-row">
                             <span class="food-item-label">${item}</span>
@@ -685,7 +741,7 @@
                 });
 
                 foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Breakfast Time:</label>
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Serving Time:</label>
                     <input type="time" id="bfTime" value="07:30">
                 `;
                 body.innerHTML = foodHTML;
@@ -711,8 +767,19 @@
                     <textarea id="issueText" rows="3" placeholder="e.g. Aircon remote, hot water, extra towel needed..."></textarea>
                 `;
             } else if(type === 'manual') {
-                title.innerText = "House Manual & Amenities";
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">• <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>• <strong>Aircon:</strong> Controls located on room wall.<br>• <strong>Braai:</strong> Garden braai facilities available on request.<br>• <strong>Parking:</strong> Secure free parking on site.</p>`;
+                title.innerText = "House Manual & Dining Info";
+                body.innerHTML = `
+                    <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:0.8rem;">
+                        • <strong>Breakfast:</strong> Complimentary for booked guests (R200 for visiting outside guests).<br>
+                        • <strong>Dinner:</strong> R200 per person.<br>
+                        • <strong>Soft Drinks:</strong> R17.50 each.<br>
+                        • <strong>Children:</strong> Ages 0–3 Free • Age 15+ Full Price.<br>
+                        • <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>
+                        • <strong>Aircon:</strong> Controls located on room wall.<br>
+                        • <strong>Braai:</strong> Garden braai facilities available on request.<br>
+                        • <strong>Parking:</strong> Secure free parking on site.
+                    </p>
+                `;
                 submitBtn.style.display = "none";
             } else if(type === 'emergency') {
                 title.innerText = "Emergency Numbers";
@@ -750,7 +817,7 @@
                     return;
                 }
 
-                message = `*Breakfast Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\nTime: ${time}`;
+                message = `*Meal & Drink Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\nTime: ${time}`;
             } else if (currentModalType === 'housekeeping') {
                 const opt = document.getElementById('hkOption').value;
                 message = `*Housekeeping Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nRequest: ${opt}`;
