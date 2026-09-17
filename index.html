@@ -203,6 +203,43 @@
         .widget-btn.full-width { grid-column: span 2; }
         .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
 
+        /* Social Icons Grid Bar */
+        .social-icons-row {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .social-icon-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 0.3rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .social-icon-btn i {
+            font-size: 1.25rem;
+            color: #FDBA74;
+        }
+
+        .social-icon-btn:hover {
+            background: rgba(217, 119, 6, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
         /* House Manual Styling */
         .manual-section {
             background: rgba(15, 23, 42, 0.6);
@@ -466,12 +503,6 @@
             border: none; border-radius: 8px; color: #FFF; font-weight: 600; cursor: pointer;
         }
 
-        .social-link-btn {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 0.8rem; margin-bottom: 0.6rem; border-radius: 10px;
-            text-decoration: none; font-weight: 600; color: #FFF; font-size: 0.85rem;
-        }
-
         .footer-note { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 1.25rem; }
         .footer-note a { color: var(--accent); text-decoration: none; }
     </style>
@@ -533,12 +564,30 @@
                 <button class="widget-btn" onclick="openModal('emergency')">
                     🚨 Emergency Info
                 </button>
-                <button class="widget-btn" onclick="openModal('checkout')">
+                <button class="widget-btn full-width" onclick="openModal('checkout')">
                     🔑 Express Check-Out
                 </button>
-                <button class="widget-btn highlight full-width" onclick="openModal('socials')">
-                    🌐 Our Website & Links
-                </button>
+                
+                <!-- Social & External Link Shortcut Icons -->
+                <div class="social-icons-row">
+                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-globe"></i>
+                        <span>Website</span>
+                    </a>
+                    <a href="https://www.facebook.com/people/Familia-Guesthouse/100064208224069/" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.google.com/maps/place/Familia+Guesthouse/@-25.17331,29.38624,15z/data=!4m9!3m8!1s0x1ec0351c59a66f03:0x61c84b53e92c627d!5m2!4m1!1i2!8m2!3d-25.17331!4d29.38624!16s%2Fg%2F11dzddq95p?Tentry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Google Map</span>
+                    </a>
+                    <a href="mailto:admin@familiaguesthouse.co.za" class="social-icon-btn">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Email Us</span>
+                    </a>
+                </div>
+
                 <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
                     💬 Chat with Reception (WhatsApp)
                 </button>
@@ -1034,14 +1083,6 @@
                 facHTML += `</div>`;
                 
                 body.innerHTML = facHTML;
-                submitBtn.style.display = "none";
-            } else if(type === 'socials') {
-                title.innerText = "Familia Guesthouse Links";
-                body.innerHTML = `
-                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-link-btn" style="background:#D97706;">Official Website</a>
-                    <a href="https://www.familiaguesthouse.co.za/pages/facilities/" target="_blank" class="social-link-btn" style="background:#475569;">Explore Facilities Webpage</a>
-                    <a href="https://www.booking.com/hotel/za/familia-guesthouse.en-gb.html" target="_blank" class="social-link-btn" style="background:#003580;">Booking.com Page</a>
-                `;
                 submitBtn.style.display = "none";
             } else if(type === 'breakfast') {
                 title.innerText = `Order Food & Drinks (${roomNumber})`;
