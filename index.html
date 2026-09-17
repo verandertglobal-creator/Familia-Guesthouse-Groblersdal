@@ -245,6 +245,18 @@
             left: 0;
         }
 
+        /* Food Category Header */
+        .menu-category-header {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #FDBA74;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 1.2rem 0 0.5rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
         /* Food Quantity Counter Controls */
         .food-item-row {
             display: flex;
@@ -258,9 +270,10 @@
         }
 
         .food-item-label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-main);
+            max-width: 65%;
         }
 
         .qty-controls {
@@ -506,14 +519,61 @@
         let roomNumber = "Room";
         let currentModalType = "";
 
-        let foodQuantities = {
-            "Full English Breakfast": 0,
-            "Continental Breakfast": 0,
-            "Dinner (R200/person)": 0,
-            "Soft Drinks (R17.50 each)": 0,
-            "Fresh Brewed Coffee": 0,
-            "Fresh Juice": 0
+        // Structure grouped by category
+        const menuData = {
+            "Breakfast": [
+                "Full English Breakfast (Included)",
+                "Continental Breakfast (Included)"
+            ],
+            "Beef": [
+                "T-Bone Steak 550g (R210)",
+                "Rump Steak 250g (R175)",
+                "Rump Steak 350g (R190)",
+                "Fillet 200g (R170)",
+                "Fillet 300g (R195)",
+                "Sirloin 300g (R165)",
+                "Sirloin 500g (R260)",
+                "Steak & Prawns (R280)"
+            ],
+            "Burgers & Ribs": [
+                "Familia Beef Burger & Relish (R139)",
+                "Crispy Crumbed Chicken Burger (R155)",
+                "Spare Ribs 200g (R149)",
+                "Spare Ribs 500g (R199)"
+            ],
+            "Chicken, Pork & Specialties": [
+                "Chicken Schnitzel 160g (R160)",
+                "Butter Chicken Curry with Basmati & Poppadom (R165)",
+                "Chicken Ribs Combo (R152)",
+                "Bobotie (Traditional South African) (R210)",
+                "Crispy Eisbein / Pork Knuckle (R185)",
+                "Slow-Braised Oxtail (R205)"
+            ],
+            "Fish": [
+                "Grilled Hake Fillet (R180)"
+            ],
+            "Kids Menu": [
+                "Kids Burger & Chips (R75)",
+                "Kids Ribs & Chips 200g (R85)",
+                "Kids Chicken Strips & Chips (R85)"
+            ],
+            "Desserts & Drinks": [
+                "Home-Baked Malva Pudding (R70)",
+                "Chocolate Brownie & Ice Cream (R70)",
+                "Dom Pedro (R70)",
+                "Ice Cream & Chocolate Sauce (R55)",
+                "Soft Drinks (R17.50 each)"
+            ]
         };
+
+        let foodQuantities = {};
+
+        // Initialize food quantities dictionary
+        Object.keys(menuData).forEach(cat => {
+            menuData[cat].forEach(item => {
+                foodQuantities[item] = 0;
+            });
+        });
 
         const facilitiesList = [
             { title: "24-hour Security", icon: "bi-shield-check" },
@@ -650,7 +710,6 @@
             }
         }
 
-        // Open-Meteo Weather for Groblersdal
         async function load7DayWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-25.1625&longitude=29.3903&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Africa%2FJohannesburg');
@@ -791,36 +850,38 @@
                 title.innerText = `Order Meals & Drinks (${roomNumber})`;
                 let foodHTML = `
                     <div class="transparency-box">
-                        <div class="transparency-title">🔍 Transparency & Pricing Rules</div>
+                        <div class="transparency-title">🔍 Dinner Sides & Sauces Info</div>
                         <ul class="transparency-list">
-                            <li><strong>Breakfast:</strong> Complimentary for all booked guests.</li>
-                            <li><strong>Visiting Guests:</strong> Guests visiting from outside are welcome to join for breakfast at R200 per person.</li>
-                            <li><strong>Dinner:</strong> R200 per person.</li>
-                            <li><strong>Soft Drinks:</strong> R17.50 each.</li>
-                            <li><strong>Child Policy:</strong> Children 0 - 3 Free • Children 15 years Full price.</li>
+                            <li><strong>Sides (Choose 2 with main meals):</strong> Vegetables of the Day, Side Salad, or Onion Rings.</li>
+                            <li><strong>Sauces:</strong> Mushroom, Cheese, Pepper, or Garlic Butter.</li>
+                            <li><strong>Breakfast:</strong> Complimentary for booked guests.</li>
                         </ul>
                     </div>
-
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem;">Select item quantities:</p>
                 `;
                 
-                Object.keys(foodQuantities).forEach(item => {
-                    const cleanId = `qty-${item.replace(/[^a-zA-Z0-9]/g, '')}`;
-                    foodHTML += `
-                        <div class="food-item-row">
-                            <span class="food-item-label">${item}</span>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateFoodQty('${item}', -1)">-</button>
-                                <span class="qty-val" id="${cleanId}">${foodQuantities[item]}</span>
-                                <button class="qty-btn" onclick="updateFoodQty('${item}', 1)">+</button>
+                Object.keys(menuData).forEach(category => {
+                    foodHTML += `<div class="menu-category-header">${category}</div>`;
+                    menuData[category].forEach(item => {
+                        const cleanId = `qty-${item.replace(/[^a-zA-Z0-9]/g, '')}`;
+                        foodHTML += `
+                            <div class="food-item-row">
+                                <span class="food-item-label">${item}</span>
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="updateFoodQty('${item}', -1)">-</button>
+                                    <span class="qty-val" id="${cleanId}">${foodQuantities[item]}</span>
+                                    <button class="qty-btn" onclick="updateFoodQty('${item}', 1)">+</button>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    });
                 });
 
                 foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Serving Time:</label>
-                    <input type="time" id="bfTime" value="07:30">
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem; display:block;">Sides / Sauce Choice & Instructions:</label>
+                    <input type="text" id="sideNotes" placeholder="e.g. Side salad, Onion rings, Pepper sauce...">
+
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">Preferred Serving Time:</label>
+                    <input type="time" id="bfTime" value="18:30">
                 `;
                 body.innerHTML = foodHTML;
             } else if(type === 'housekeeping') {
@@ -848,10 +909,8 @@
                 title.innerText = "House Manual & Dining Info";
                 body.innerHTML = `
                     <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:0.8rem;">
-                        • <strong>Breakfast:</strong> Complimentary for booked guests (R200 for visiting outside guests).<br>
-                        • <strong>Dinner:</strong> R200 per person.<br>
-                        • <strong>Soft Drinks:</strong> R17.50 each.<br>
-                        • <strong>Children:</strong> Ages 0–3 Free • Age 15+ Full Price.<br>
+                        • <strong>Breakfast:</strong> Complimentary for booked guests.<br>
+                        • <strong>Dinner:</strong> Served on request. Choice of 2 sides & sauce with mains.<br>
                         • <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>
                         • <strong>Aircon:</strong> Controls located on room wall.<br>
                         • <strong>Braai:</strong> Garden braai facilities available on request.<br>
@@ -883,6 +942,8 @@
 
             if (currentModalType === 'breakfast') {
                 const time = document.getElementById('bfTime').value;
+                const sideNotes = document.getElementById('sideNotes') ? document.getElementById('sideNotes').value.trim() : "";
+                
                 let selectedItems = [];
                 Object.keys(foodQuantities).forEach(item => {
                     if (foodQuantities[item] > 0) {
@@ -891,11 +952,14 @@
                 });
 
                 if (selectedItems.length === 0) {
-                    alert("Please select at least one item using the + button.");
+                    alert("Please select at least one menu item using the + button.");
                     return;
                 }
 
                 message = `*Meal & Drink Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\nTime: ${time}`;
+                if (sideNotes) {
+                    message += `\nSides/Notes: ${sideNotes}`;
+                }
             } else if (currentModalType === 'housekeeping') {
                 const opt = document.getElementById('hkOption').value;
                 message = `*Housekeeping Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nRequest: ${opt}`;
