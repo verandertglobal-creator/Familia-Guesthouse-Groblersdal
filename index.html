@@ -44,7 +44,7 @@
 
     <!-- Top Hero Header -->
     <header class="hero-banner text-white p-6 pb-12 shadow-md relative">
-        <div class="max-w-md mx-auto flex justify-between items-center mb-6">
+        <div class="max-w-md mx-auto flex justify-between items-center mb-4">
             <span class="text-xs uppercase tracking-widest bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 font-semibold text-amber-400">
                 <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400 animate-pulse"></i> Welcome Guest
             </span>
@@ -52,7 +52,10 @@
                 <i class="fa-solid fa-wifi text-amber-400 mr-1"></i> WiFi Code
             </button>
         </div>
-        <div class="max-w-md mx-auto text-center">
+
+        <!-- Centered Header Logo -->
+        <div class="max-w-md mx-auto text-center flex flex-col items-center">
+            <img src="logo_familia.png" alt="Logo" class="w-14 h-14 rounded-full object-cover border border-slate-700/60 bg-slate-900/60 backdrop-blur-md shadow-lg mb-3">
             <h1 class="text-3xl font-bold tracking-tight drop-shadow-md">Your Stay Assistant</h1>
             <p class="text-slate-200 text-sm mt-1 drop-shadow">Quick access to services, guides, and requests.</p>
         </div>
@@ -116,9 +119,7 @@
     <!-- Welcome Modal (Shown once per device) -->
     <div id="welcomeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
-            <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center text-2xl mx-auto">
-                <i class="fa-solid fa-hand-sparkles"></i>
-            </div>
+            <img src="logo_familia.png" alt="Logo" class="w-16 h-16 rounded-full object-cover border border-slate-700/80 bg-slate-950 shadow-md mx-auto">
             <h2 class="text-xl font-bold text-slate-100">Welcome to Your Stay!</h2>
             <p class="text-xs text-slate-300 leading-relaxed">We're thrilled to host you. Use this web portal anytime during your stay to request services, view local guides, or connect with us.</p>
             <button onclick="closeWelcomeModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm py-3 rounded-xl transition">
@@ -127,7 +128,7 @@
         </div>
     </div>
 
-    <!-- Generic Modal Template (Left-aligned content standard) -->
+    <!-- Generic Modal Template -->
     <div id="wifiModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-left">
             <div class="flex justify-between items-center">
@@ -140,7 +141,6 @@
         </div>
     </div>
 
-    <!-- Other Modals (Food, Guide, Rules placeholders) can follow the standard left-align template pattern -->
     <div id="foodModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-left">
             <div class="flex justify-between items-center">
@@ -160,7 +160,6 @@
 
     <!-- Script Logic -->
     <script>
-        // Handle Welcome Modal LocalStorage check
         document.addEventListener("DOMContentLoaded", () => {
             if (!localStorage.getItem('welcomeShown')) {
                 document.getElementById('welcomeModal').classList.remove('hidden');
@@ -181,12 +180,10 @@
         }
 
         function triggerAction(message, redirectUrl) {
-            // Show Toast Notification
             const toast = document.getElementById('toast');
             document.getElementById('toastMessage').innerText = message;
             toast.classList.add('show');
 
-            // Hide Toast after 3 seconds & redirect to action URL (e.g. WhatsApp)
             setTimeout(() => {
                 toast.classList.remove('show');
                 if (redirectUrl) {
