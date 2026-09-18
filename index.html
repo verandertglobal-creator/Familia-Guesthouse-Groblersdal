@@ -3,1313 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Familia Guesthouse & Boutique Hotel | Guest Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <title>Guest Portal</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PWA & Mobile Optimization Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Guest Portal">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
     <style>
-        :root {
-            --bg-color: #0F172A;
-            --card-bg: rgba(30, 41, 59, 0.85);
-            --accent: #D97706;
-            --accent-hover: #B45309;
-            --accent-green: #10B981;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --border: rgba(255, 255, 255, 0.12);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
-                        url('https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 1.5rem 0.5rem;
-        }
-
-        .widget-container {
-            width: 100%;
-            max-width: 480px;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Hero Accommodation Banner */
         .hero-banner {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            margin-bottom: 1.25rem;
-            padding: 2rem 1rem 1.5rem;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.92) 100%),
-                        url('https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78') center/cover no-repeat;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.65) 100%), url('hero.jpg') center/cover no-repeat;
         }
-
-        .hero-banner .badge {
-            display: inline-block;
-            background: rgba(217, 119, 6, 0.35);
-            border: 1px solid var(--accent);
-            color: #FDBA74;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            margin-bottom: 0.5rem;
-            backdrop-filter: blur(4px);
-        }
-
-        .hero-banner h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.55rem;
-            font-weight: 700;
-            color: #FFF;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-            letter-spacing: 0.5px;
-        }
-
-        .guest-welcome-subtitle {
-            font-size: 0.95rem;
-            color: #FDBA74;
-            font-weight: 600;
-            margin-top: 0.3rem;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
-        }
-
-        .hero-banner p {
-            font-size: 0.8rem;
-            color: #E2E8F0;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
-            margin-top: 0.2rem;
-        }
-
-        /* Event Detail Banner Image */
-        .event-detail-banner {
-            width: 100%;
-            height: 160px;
-            border-radius: 14px;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 1px solid var(--border);
-        }
-
-        /* Quick Check-In Bar */
-        .checkin-bar {
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid var(--accent-green);
-            border-radius: 16px;
-            padding: 0.9rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .checkin-info h4 { font-size: 0.9rem; color: var(--accent-green); }
-        .checkin-info p { font-size: 0.75rem; color: var(--text-muted); }
-
-        .btn-checkin {
-            background: var(--accent-green);
-            color: #FFF;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn-checkin:hover { opacity: 0.9; transform: scale(1.02); }
-
-        /* Navigation Tabs */
-        .tab-nav {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-            background: rgba(15, 23, 42, 0.6);
-            padding: 0.3rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 0.6rem 0.3rem;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .tab-btn.active {
-            background: var(--accent);
-            color: #FFF;
-        }
-
-        /* Tab Contents */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        /* Buttons Grid */
-        .widget-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.85rem;
-        }
-
-        .widget-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1rem;
-            color: var(--text-main);
-            cursor: pointer;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .widget-btn:hover {
-            background: rgba(217, 119, 6, 0.15);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .widget-btn.full-width { grid-column: span 2; }
-        .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
-
-        /* Portal Image Styling */
         .portal-image {
-            grid-column: span 2;
-            width: 100%;
-            height: 120px;
-            border-radius: 12px;
+            height: 210px;
             object-fit: cover;
-            border: 1px solid var(--border);
-            margin-top: -0.3rem;
-            margin-bottom: 0.2rem;
+            width: 100%;
         }
-
-        /* Social Icons Grid Bar */
-        .social-icons-row {
-            grid-column: span 2;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.6rem;
+        /* Toast Notification Animation */
+        .app-toast {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-
-        .social-icon-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.75rem 0.3rem;
-            color: var(--text-main);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            font-size: 0.68rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            text-align: center;
+        .app-toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
-
-        .social-icon-btn i {
-            font-size: 1.25rem;
-            color: #FDBA74;
-        }
-
-        .social-icon-btn:hover {
-            background: rgba(217, 119, 6, 0.2);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* House Manual Styling */
-        .manual-section {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.85rem;
-            margin-bottom: 0.85rem;
-        }
-
-        .manual-section-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #FDBA74;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 0.3rem;
-        }
-
-        .manual-list {
-            list-style: none;
-            font-size: 0.78rem;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        .manual-list li {
-            position: relative;
-            padding-left: 1rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .manual-list li::before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Transparency Box */
-        .transparency-box {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            padding: 0.85rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .transparency-title {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #FDBA74;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .transparency-list {
-            list-style: none;
-            font-size: 0.78rem;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        .transparency-list li {
-            position: relative;
-            padding-left: 1rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .transparency-list li::before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Food Category Header */
-        .menu-category-header {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #FDBA74;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 1.2rem 0 0.5rem 0;
-            padding-bottom: 0.2rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* Food Quantity Counter Controls */
-        .food-item-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #0F172A;
-            padding: 0.75rem;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            margin-bottom: 0.6rem;
-        }
-
-        .food-item-label {
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--text-main);
-            max-width: 65%;
-        }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .qty-btn {
-            background: rgba(217, 119, 6, 0.2);
-            border: 1px solid var(--accent);
-            color: #FFF;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s;
-        }
-
-        .qty-btn:hover { background: var(--accent); }
-
-        .qty-val {
-            font-size: 0.9rem;
-            font-weight: 700;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        /* Total Price Display Bar */
-        .order-total-bar {
-            background: rgba(217, 119, 6, 0.15);
-            border: 1px solid var(--accent);
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
-            margin-top: 1rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #FDBA74;
-        }
-
-        /* Amenities Modal Grid */
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-
-        .amenity-item {
-            background: #0F172A;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.85rem 0.6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 6px;
-        }
-
-        .amenity-item i {
-            font-size: 1.5rem;
-            color: #FDBA74;
-        }
-
-        .amenity-item span {
-            font-size: 0.78rem;
-            color: var(--text-main);
-            font-weight: 500;
-            line-height: 1.2;
-        }
-
-        /* Event & Weather Cards */
-        .list-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.85rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .list-card:hover {
-            border-color: var(--accent);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        .badge-promoted {
-            background: rgba(217, 119, 6, 0.25);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-size: 0.65rem;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        /* Modal Overlay & Card */
-        .modal {
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background: rgba(15, 23, 42, 0.65); 
-            backdrop-filter: blur(8px);
-            justify-content: center; 
-            align-items: center; 
-            z-index: 1000; 
-            padding: 1rem;
-        }
-
-        .modal-content {
-            background: #1E293B; 
-            border: 1px solid var(--border);
-            border-radius: 20px; 
-            padding: 1.5rem; 
-            width: 100%; 
-            max-width: 440px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
-        }
-
-        .modal-content input, .modal-content select, .modal-content textarea {
-            width: 100%; padding: 0.75rem; margin-top: 0.5rem; margin-bottom: 1rem;
-            border-radius: 8px; border: 1px solid var(--border); background: #0F172A;
-            color: #FFF; font-family: inherit;
-        }
-
-        .btn-submit {
-            width: 100%; padding: 0.8rem; background: var(--accent);
-            border: none; border-radius: 8px; color: #FFF; font-weight: 600; cursor: pointer;
-        }
-
-        .footer-note { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 1.25rem; }
-        .footer-note a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
 
-    <div class="widget-container">
-        <!-- Hero Accommodation Banner -->
-        <div class="hero-banner">
-            <span class="badge">Groblersdal • Sekhukhune</span>
-            <h1>Familia Guesthouse</h1>
-            <div class="guest-welcome-subtitle" id="bannerWelcomeText">Welcome, Guest!</div>
-            <p>Boutique Accommodation Portal</p>
+    <!-- Top Hero Header -->
+    <header class="hero-banner text-white p-6 pb-12 shadow-md relative">
+        <div class="max-w-md mx-auto flex justify-between items-center mb-6">
+            <span class="text-xs uppercase tracking-widest bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 font-semibold text-amber-400">
+                <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400 animate-pulse"></i> Welcome Guest
+            </span>
+            <button onclick="openModal('wifiModal')" class="bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700 text-xs font-medium hover:bg-slate-800 transition">
+                <i class="fa-solid fa-wifi text-amber-400 mr-1"></i> WiFi Code
+            </button>
         </div>
-
-        <!-- Check-In Banner -->
-        <div class="checkin-bar" id="checkinBanner">
-            <div class="checkin-info">
-                <h4 id="checkinTitle">Check-In Arrival Log</h4>
-                <p id="checkinTime">Tap to record arrival</p>
-            </div>
-            <button class="btn-checkin" id="checkinBtn" onclick="processCheckIn()">Check In</button>
+        <div class="max-w-md mx-auto text-center">
+            <h1 class="text-3xl font-bold tracking-tight drop-shadow-md">Your Stay Assistant</h1>
+            <p class="text-slate-200 text-sm mt-1 drop-shadow">Quick access to services, guides, and requests.</p>
         </div>
+    </header>
 
-        <!-- Navigation Tabs -->
-        <div class="tab-nav">
-            <button class="tab-btn active" onclick="switchTab('quick-access', event)">Services</button>
-            <button class="tab-btn" onclick="switchTab('weather-tab', event)">7-Day Weather</button>
-            <button class="tab-btn" onclick="switchTab('events-tab', event)">What To Do</button>
-        </div>
+    <!-- Main Container -->
+    <main class="max-w-md mx-auto w-full px-4 -mt-6 flex-grow space-y-4 pb-12">
 
-        <!-- TAB 1: QUICK ACCESS SERVICES -->
-        <div class="tab-content active" id="quick-access">
-            <div class="widget-grid">
-                <button class="widget-btn highlight full-width" onclick="openGateDemo()">
-                    🔒 Open Main Security Gate
-                </button>
-                <img src="https://b-cdn.springnest.com/media/img/1cw/429-20240108b508c97.jpg?crop=1772%2C886%2C0%2C47&width=1772&quality=78" alt="Open Security Gate" class="portal-image">
-                <button class="widget-btn" onclick="openModal('wifi')">
-                    📶 Wi-Fi Access
-                </button>
-                <button class="widget-btn" onclick="openModal('breakfast')">
-                    🍳 Food Menu
-                </button>
-                <button class="widget-btn" onclick="openModal('facilities')">
-                    🏨 Guest Facilities
-                </button>
-                <button class="widget-btn" onclick="openModal('housekeeping')">
-                    🧹 Housekeeping
-                </button>
-                <button class="widget-btn" onclick="openModal('loadshedding')">
-                    ⚡ Solar / Power Status
-                </button>
-                <button class="widget-btn" onclick="openModal('issue')">
-                    🛠 Report Issue
-                </button>
-                <button class="widget-btn" onclick="openModal('manual')">
-                    📖 House Manual
-                </button>
-                <button class="widget-btn" onclick="openModal('emergency')">
-                    🚨 Emergency Info
-                </button>
-                <button class="widget-btn full-width" onclick="openModal('checkout')">
-                    🔑 Express Check-Out
-                </button>
-                <img src="https://b-cdn.springnest.com/media/img/1cw/223-202401087bf1595.jpg?crop=1772%2C886%2C0%2C92&width=1772&quality=78" alt="Express Check-Out" class="portal-image">
-                
-                <!-- Social & External Link Shortcut Icons -->
-                <div class="social-icons-row">
-                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-icon-btn">
-                        <i class="bi bi-globe"></i>
-                        <span>Website</span>
-                    </a>
-                    <a href="https://www.facebook.com/people/Familia-Guesthouse/100064208224069/" target="_blank" class="social-icon-btn">
-                        <i class="bi bi-facebook"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.google.com/maps/place/Familia+Guesthouse/@-25.17331,29.38624,15z/data=!4m9!3m8!1s0x1ec0351c59a66f03:0x61c84b53e92c627d!5m2!4m1!1i2!8m2!3d-25.17331!4d29.38624!16s%2Fg%2F11dzddq95p?Tentry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="social-icon-btn">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span>Google Map</span>
-                    </a>
-                    <a href="mailto:admin@familiaguesthouse.co.za" class="social-icon-btn">
-                        <i class="bi bi-envelope-fill"></i>
-                        <span>Email Us</span>
-                    </a>
+        <!-- Quick Action Grid -->
+        <div class="grid grid-cols-2 gap-3">
+            <button onclick="triggerAction('Gate opened! Signal sent to reception.', 'https://wa.me/?text=Hello,%20please%20open%20the%20gate.')" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 text-left shadow-lg hover:border-amber-500/50 transition group">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-door-open"></i>
                 </div>
+                <h3 class="font-semibold text-sm text-slate-200">Open Gate</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Request access</p>
+            </button>
 
-                <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
-                    💬 Chat with Reception (WhatsApp)
-                </button>
-                <img src="https://b-cdn.springnest.com/media/img/1cw/411-202401082cee7cc.jpg?crop=1772%2C886%2C0%2C47&width=1772&quality=78" alt="Chat with Reception" class="portal-image">
+            <button onclick="openModal('foodModal')" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 text-left shadow-lg hover:border-amber-500/50 transition group">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h3 class="font-semibold text-sm text-slate-200">Room Service</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Menus & orders</p>
+            </button>
+        </div>
+
+        <!-- Cards Section -->
+        <div class="space-y-4 pt-2">
+            <!-- Card 1 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <img src="guide.jpg" alt="Local Guide" class="portal-image">
+                <div class="p-5">
+                    <h3 class="font-bold text-base text-slate-100">Local Area Guide</h3>
+                    <p class="text-xs text-slate-400 mt-1">Discover top-rated restaurants, scenic viewpoints, and essential nearby attractions.</p>
+                    <button onclick="openModal('guideModal')" class="mt-4 w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition">
+                        View Recommendations
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <img src="house_rules.jpg" alt="House Rules" class="portal-image">
+                <div class="p-5">
+                    <h3 class="font-bold text-base text-slate-100">Property Guidelines</h3>
+                    <p class="text-xs text-slate-400 mt-1">Information on check-out procedures, amenities usage, and quiet hours.</p>
+                    <button onclick="openModal('rulesModal')" class="mt-4 w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition">
+                        Read Guidelines
+                    </button>
+                </div>
             </div>
         </div>
+    </main>
 
-        <!-- TAB 2: 7-DAY WEATHER -->
-        <div class="tab-content" id="weather-tab">
-            <div id="weatherList">Loading Groblersdal Forecast...</div>
-        </div>
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-slate-500 border-t border-slate-900">
+        <p>&copy; 2026 Guest Portal. All rights reserved.</p>
+    </footer>
 
-        <!-- TAB 3: LOCAL EVENTS & WHAT TO DO -->
-        <div class="tab-content" id="events-tab">
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">Attractions & spots near Familia Guesthouse:</p>
-            <div id="eventsList"></div>
-        </div>
-
-        <div class="footer-note">
-            Powered by <a href="https://www.latskymultimedia.co.za" target="_blank" cite="topic-1">Latsky Multimedia</a>
-        </div>
-    </div>
-
-    <!-- Generic Interactive Modal Overlay -->
-    <div class="modal" id="actionModal">
-        <div class="modal-content">
-            <h3 id="modalTitle" style="margin-bottom:1rem;">Service Request</h3>
-            <div id="modalBody"></div>
-            <button class="btn-submit" id="modalSubmitBtn" onclick="submitRequest()">Submit</button>
-            <button style="background:transparent; border:none; color:var(--text-muted); width:100%; margin-top:0.6rem; cursor:pointer;" onclick="closeModal()">Close</button>
+    <!-- Welcome Modal (Shown once per device) -->
+    <div id="welcomeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
+            <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center text-2xl mx-auto">
+                <i class="fa-solid fa-hand-sparkles"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-100">Welcome to Your Stay!</h2>
+            <p class="text-xs text-slate-300 leading-relaxed">We're thrilled to host you. Use this web portal anytime during your stay to request services, view local guides, or connect with us.</p>
+            <button onclick="closeWelcomeModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm py-3 rounded-xl transition">
+                Get Started
+            </button>
         </div>
     </div>
 
+    <!-- Generic Modal Template (Left-aligned content standard) -->
+    <div id="wifiModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-left">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-lg text-slate-100">WiFi Details</h3>
+                <button onclick="closeModal('wifiModal')" class="text-slate-400 hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <p class="text-xs text-slate-300">Network Name: <strong class="text-amber-400">GuestNetwork</strong></p>
+            <p class="text-xs text-slate-300">Password: <strong class="text-amber-400">Welcome2026</strong></p>
+            <button onclick="closeModal('wifiModal')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-3 rounded-xl transition">Close</button>
+        </div>
+    </div>
+
+    <!-- Other Modals (Food, Guide, Rules placeholders) can follow the standard left-align template pattern -->
+    <div id="foodModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-left">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-lg text-slate-100">Room Service & Dining</h3>
+                <button onclick="closeModal('foodModal')" class="text-slate-400 hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <p class="text-xs text-slate-300">Browse our menu options or place an order directly with reception via WhatsApp.</p>
+            <button onclick="triggerAction('✓ Order sent to reception', 'https://wa.me/?text=Hello,%20I%20would%20like%20to%20place%20a%20food%20order.')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs py-3 rounded-xl transition">Order via WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl app-toast z-50 flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-sm"></i>
+        <span id="toastMessage">Action completed successfully</span>
+    </div>
+
+    <!-- Script Logic -->
     <script>
-        const HOST_PHONE = "27828215975";
-        let guestName = "Guest";
-        let roomNumber = "Room";
-        let currentModalType = "";
-
-        // Updated menu items with prices (R)
-        const menuData = {
-            "Beef": [
-                { name: "T-Bone Steak", price: 210 },
-                { name: "Rump Steak", price: 175 },
-                { name: "Oxtail", price: 205 }
-            ],
-            "Fish": [
-                { name: "Deep Fried Hake", price: 180 }
-            ],
-            "Chicken": [
-                { name: "Chicken Schnitzel", price: 160 },
-                { name: "Mexican Chicken", price: 165 }
-            ],
-            "Pizzas": [
-                { name: "Mona Lisa Pizza", price: 145 },
-                { name: "Tarantino Pizza", price: 155 },
-                { name: "Michelangelo Pizza", price: 150 },
-                { name: "BBQ Chicken Pizza", price: 145 },
-                { name: "Mexican Pizza", price: 150 },
-                { name: "El Presidento Pizza", price: 160 },
-                { name: "Pepperoni Pizza", price: 135 },
-                { name: "Chicken Mayonnaise Pizza", price: 140 },
-                { name: "Pac Man (Four Cheeses) Pizza", price: 145 },
-                { name: "Vegetarian Pizza", price: 130 },
-                { name: "Margarita Pizza", price: 110 },
-                { name: "Hawaiian Pizza", price: 135 }
-            ],
-            "Cecilia's Salads": [
-                { name: "Nacho Chicken Salad", price: 150 },
-                { name: "BBQ Beef Strip Salad", price: 130 },
-                { name: "Chicken Avo Bacon Salad", price: 130 }
-            ],
-            "Café Favorites (Served with Chips or Salad)": [
-                { name: "Chicken Livers & Toast", price: 98 },
-                { name: "Creamy Chicken & Cheese Tramezzini", price: 120 },
-                { name: "BBQ Beef & Chicken Tramezzini", price: 120 },
-                { name: "Beef Quiche", price: 89 },
-                { name: "Chicken Quiche", price: 89 }
-            ],
-            "Signature Pies": [
-                { name: "Duck Pie", price: 180 },
-                { name: "Beef & Red Wine Pie", price: 175 },
-                { name: "Chicken & Mushroom Pie", price: 175 }
-            ],
-            "Hearty Meals": [
-                { name: "Chicken Schnitzel & Chips", price: 160 },
-                { name: "Butter Chicken Curry & Rice", price: 152 },
-                { name: "Beef Jaffle & Chips", price: 105 }
-            ],
-            "Burgers": [
-                { name: "Classic Beef Burger", price: 150 },
-                { name: "Chicken Burger", price: 150 },
-                { name: "Add-On: Egg", price: 15 },
-                { name: "Add-On: Bacon", price: 25 }
-            ],
-            "Sweets & Desserts": [
-                { name: "Chocolate Croissant", price: 40 },
-                { name: "Chocolate Vulcano & Ice Cream", price: 55 },
-                { name: "Cake of the Day", price: 65 }
-            ],
-            "Hot Drinks": [
-                { name: "Americano", price: 36 },
-                { name: "Cappuccino", price: 45 },
-                { name: "Latte", price: 48 },
-                { name: "Hot Chocolate", price: 42 },
-                { name: "Almond Milk Alternative", price: 15 },
-                { name: "Extra Espresso Shot", price: 15 }
-            ],
-            "Milkshakes": [
-                { name: "Chocolate Milkshake", price: 49 },
-                { name: "Bubblegum Milkshake", price: 49 },
-                { name: "Banana Milkshake", price: 49 },
-                { name: "Strawberry Milkshake", price: 49 },
-                { name: "Salted Caramel Milkshake", price: 49 },
-                { name: "Vanilla Milkshake", price: 49 },
-                { name: "Coffee Milkshake", price: 49 }
-            ],
-            "La Bush Bar - Wines": [
-                { name: "Fynbos Merlot 3L", price: 370 },
-                { name: "Fynbos Pinotage 3L", price: 370 },
-                { name: "Fynbos Chenin Blanc 3L", price: 370 },
-                { name: "Boekenhoutskloof The Choc Blok", price: 950 },
-                { name: "Raka Malbec", price: 429 },
-                { name: "Rupert & Rothschild Classique", price: 390 },
-                { name: "Kanonkop Kadette", price: 230 },
-                { name: "Zonneblom Pinotage", price: 250 },
-                { name: "Raka Quinery", price: 429 },
-                { name: "J.C. Le Roux La Chanson", price: 200 },
-                { name: "Krone Kaaimansgat Blanc de Blancs", price: 750 },
-                { name: "Spier Pinotage", price: 219 },
-                { name: "Spier Merlot", price: 219 },
-                { name: "Slanghoek Cabernet Sauvignon", price: 229 },
-                { name: "Fat Bastard", price: 349 },
-                { name: "Spier Sauvignon Blanc", price: 200 },
-                { name: "Kleine Salze Sauvignon Blanc", price: 200 },
-                { name: "Boekenhoutskloof", price: 1200 },
-                { name: "Diemersdal Sauv Blanc", price: 200 },
-                { name: "Durbanville Hills Chardonnay", price: 200 },
-                { name: "Slanghoek Chenin Blanc", price: 200 },
-                { name: "Nederburg Baronne", price: 209 },
-                { name: "Nederburg Merlot", price: 209 },
-                { name: "Laborie Merlot", price: 209 },
-                { name: "HPF Kleinboet", price: 350 },
-                { name: "Jakkalsvlei Moscato Rose", price: 180 },
-                { name: "Jakkalsvlei Merlot Red", price: 270 },
-                { name: "Jakkalsvlei Moscato White", price: 180 },
-                { name: "Jakkalsvlei Pinotage Red", price: 270 },
-                { name: "Wine Per Glass", price: 55 }
-            ],
-            "La Bush Bar - Beers & Ciders": [
-                { name: "Black Label", price: 30 },
-                { name: "Castle Lager", price: 30 },
-                { name: "Castle Lite", price: 35 },
-                { name: "Flying Fish", price: 35 },
-                { name: "Brutal Fruit", price: 30 },
-                { name: "Amstel", price: 35 },
-                { name: "Heineken", price: 35 },
-                { name: "Hunter's Dry", price: 40 },
-                { name: "Hunters Gold", price: 35 },
-                { name: "Savannah Dry (500ml)", price: 45 },
-                { name: "Ice Tropez", price: 130 },
-                { name: "Windhoek Draught (440ml)", price: 45 },
-                { name: "Windhoek Draught (500ml)", price: 40 },
-                { name: "Hunter's Extreme", price: 40 },
-                { name: "Corona", price: 45 },
-                { name: "Corona Zero", price: 38 },
-                { name: "Stella", price: 35 }
-            ],
-            "La Bush Bar - Spirits Per Tot": [
-                { name: "Gordon's Gin", price: 25 },
-                { name: "Richelieu Brandy", price: 30 },
-                { name: "Red Square", price: 45 },
-                { name: "Wildebeest Brandy", price: 30 },
-                { name: "Klipdrift", price: 30 },
-                { name: "Klipdrift Premium", price: 35 },
-                { name: "Skyy Peach", price: 30 },
-                { name: "Skyy Rasberry", price: 30 },
-                { name: "Spice Gold", price: 30 },
-                { name: "Red Heart", price: 30 },
-                { name: "Johnnie Walker", price: 35 },
-                { name: "The Glenlivet 15 Year", price: 65 },
-                { name: "Dimple Haig 15 Year Old", price: 45 },
-                { name: "Bell's Scotch", price: 35 },
-                { name: "Chivas Regal 12 Year Old", price: 35 },
-                { name: "Chivas Regal XV", price: 35 },
-                { name: "Tequila", price: 40 },
-                { name: "Loch Lomond", price: 40 },
-                { name: "Jack Daniel's", price: 35 },
-                { name: "Glenfiddich", price: 40 },
-                { name: "Jameson Irish", price: 40 },
-                { name: "Hennessy VS Cognac", price: 45 }
-            ],
-            "La Bush Bar - Cocktails & Mocktails": [
-                { name: "Tequila Sunrise", price: 85 },
-                { name: "Strawberry Daiquiri", price: 85 },
-                { name: "Old Fashioned", price: 85 },
-                { name: "Pina Colada", price: 85 },
-                { name: "Shirley Temple Mocktail", price: 45 },
-                { name: "Fruit Mocktail", price: 45 },
-                { name: "Virgin Mojito", price: 45 },
-                { name: "Elderflower Gin", price: 60 },
-                { name: "Blood Orange Gin", price: 70 },
-                { name: "La Bush Craft Cocktail", price: 70 }
-            ]
-        };
-
-        let foodQuantities = {};
-
-        // Initialize food quantities dictionary
-        Object.keys(menuData).forEach(cat => {
-            menuData[cat].forEach(item => {
-                foodQuantities[item.name] = 0;
-            });
+        // Handle Welcome Modal LocalStorage check
+        document.addEventListener("DOMContentLoaded", () => {
+            if (!localStorage.getItem('welcomeShown')) {
+                document.getElementById('welcomeModal').classList.remove('hidden');
+            }
         });
 
-        const facilitiesList = [
-            { title: "24-hour Security", icon: "bi-shield-check" },
-            { title: "Air Conditioning", icon: "bi-snow" },
-            { title: "Complimentary Wi-Fi", icon: "bi-wifi" },
-            { title: "Disability Services", icon: "bi-person-wheelchair" },
-            { title: "Swimming Pool", icon: "bi-water" },
-            { title: "Satellite / Cable TV", icon: "bi-tv" },
-            { title: "Parking (covered & secure)", icon: "bi-p-square" },
-            { title: "Bird Watching", icon: "bi-binoculars" },
-            { title: "Cleaning Services", icon: "bi-stars" },
-            { title: "Communal Dining", icon: "bi-cup-hot" },
-            { title: "Credit Card Facilities", icon: "bi-credit-card" },
-            { title: "Dinner on Request", icon: "bi-egg-fried" },
-            { title: "Eco Friendly", icon: "bi-recycle" },
-            { title: "Electrical Outlets", icon: "bi-plug" },
-            { title: "Fridge", icon: "bi-box-seam" },
-            { title: "Iron & Ironing Board", icon: "bi-border-style" },
-            { title: "Lounge Area", icon: "bi-couch" },
-            { title: "Verandah", icon: "bi-sun" }
-        ];
-
-        // Parse URL Parameters (e.g. ?guest=Johann&room=Room%20101)
-        function parseURLParameters() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.has('guest') && params.get('guest').trim() !== '') {
-                guestName = params.get('guest').trim();
-            }
-            if (params.has('room') && params.get('room').trim() !== '') {
-                roomNumber = params.get('room').trim();
-            }
-
-            document.getElementById('bannerWelcomeText').innerText = `Welcome, ${guestName}! (${roomNumber})`;
-            document.getElementById('checkinTitle').innerText = `${guestName} • ${roomNumber}`;
+        function closeWelcomeModal() {
+            localStorage.setItem('welcomeShown', 'true');
+            document.getElementById('welcomeModal').classList.add('hidden');
         }
 
-        function showWelcomeModal(guest, room) {
-            const modal = document.getElementById('actionModal');
-            const title = document.getElementById('modalTitle');
-            const body = document.getElementById('modalBody');
-            const submitBtn = document.getElementById('modalSubmitBtn');
-
-            title.innerText = `👋 Welcome to Familia Guesthouse!`;
-            submitBtn.style.display = "none";
-
-            body.innerHTML = `
-                <img src="https://b-cdn.springnest.com/media/img/1cw/078-202401079d54809.jpg?width=800" 
-                     alt="Welcome to Familia Guesthouse" 
-                     style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 0.8rem; border: 1px solid var(--border);">
-                <div style="text-align:center; padding:0.5rem 0;">
-                    <p style="font-size:1.05rem; font-weight:600; color:#FDBA74; margin-bottom:0.6rem;">Hello ${guest}!</p>
-                    <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
-                </div>
-            `;
-
-            modal.style.display = 'flex';
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
         }
 
-        // Groblersdal Local Attractions
-        const eventData = [
-            {
-                id: 0,
-                title: "Loskop Dam Nature Reserve",
-                spot: "N11 South, Groblersdal Area",
-                promoted: true,
-                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-                desc: "A massive 23,000-hectare reserve situated along the 27km-long Loskop Dam. Home to over 70 mammal species and abundant birdlife, offering guided boat trips, game viewing, and fishing.",
-                address: "N11 Highway, Loskop Dam Area",
-                time: "Open Daily • 06:00 to 18:00"
-            },
-            {
-                id: 1,
-                title: "Groblersdal Golf Club",
-                spot: "Town Centre, Groblersdal",
-                promoted: true,
-                image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80",
-                desc: "Set in South Africa's second-largest irrigation settlement, this scenic golf course offers a relaxed 9 or 18-hole round surrounded by lush citrus and farming valleys.",
-                address: "Golf Course Rd, Groblersdal",
-                time: "Tee Times: 07:00 – 17:00 Daily"
-            },
-            {
-                id: 2,
-                title: "Mkhombo Nature Reserve",
-                spot: "Near Groblersdal / Middelburg",
-                promoted: false,
-                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80",
-                desc: "Nestled among rolling hills and open Highveld grassland, this peaceful reserve surrounds the Mkhombo Dam and is renowned for tranquil birdwatching and scenic drives.",
-                address: "Mkhombo Dam Access Rd, Mpumalanga",
-                time: "Open Daily • Sunrise to Sunset"
-            },
-            {
-                id: 3,
-                title: "Buffalo Gorge 4x4 & Adventure",
-                spot: "Avontuur Farm, Near Loskop Dam",
-                promoted: false,
-                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-                desc: "Outdoor adventure destination offering wilderness 4x4 trails, abseiling, horse riding, mountain biking, and hiking along scenic rock formations.",
-                address: "Avontuur Farm, Middelburg / Groblersdal District",
-                time: "Day Visitors: 08:00 – 17:00"
-            },
-            {
-                id: 4,
-                title: "Rooikrans & Cycad Hiking Trails",
-                spot: "Olifants River Gorge",
-                promoted: false,
-                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
-                desc: "Multi-day and day trails meandering through the Olifants River Gorge, featuring ancient Lanatus Cycad populations unique to the Mpumalanga Cultural Heartland.",
-                address: "Olifants River Gorge, Groblersdal Region",
-                time: "Bookings required for guided hikes"
-            }
-        ];
-
-        function switchTab(tabId, evt) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            if (evt && evt.target) {
-                evt.target.classList.add('active');
-            }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
         }
 
-        function processCheckIn() {
-            const now = new Date();
-            const timeString = now.toLocaleDateString() + " at " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            localStorage.setItem('checkinTimestamp', timeString);
-            updateCheckInUI(timeString);
+        function triggerAction(message, redirectUrl) {
+            // Show Toast Notification
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.add('show');
 
-            const msg = `*Check-In Recorded*\nGuest: ${guestName}\nRoom: ${roomNumber}\nTime: ${timeString}`;
-            window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        function updateCheckInUI(timestamp) {
-            if(timestamp) {
-                document.getElementById('checkinTime').innerText = `Checked In: ${timestamp}`;
-                document.getElementById('checkinBtn').innerText = "Logged";
-                document.getElementById('checkinBtn').style.background = "#64748B";
-            }
-        }
-
-        async function load7DayWeather() {
-            try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-25.1625&longitude=29.3903&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Africa%2FJohannesburg');
-                const data = await res.json();
-                
-                let html = '';
-                const days = data.daily.time;
-                for(let i=0; i<days.length; i++) {
-                    const dateObj = new Date(days[i]);
-                    const dayName = i === 0 ? "Today" : dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-                    const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
-                    const minTemp = Math.round(data.daily.temperature_2m_min[i]);
-                    const wind = Math.round(data.daily.windspeed_10m_max[i]);
-                    const code = data.daily.weathercode[i];
-
-                    let icon = "☀️ Sunshine";
-                    if(code > 2) icon = "⛅ Cloudy";
-                    if(code > 50) icon = "🌧️ Rain";
-
-                    html += `
-                        <div class="list-card" style="cursor:default;">
-                            <div>
-                                <strong>${dayName}</strong><br>
-                                <span style="font-size:0.75rem; color:var(--text-muted);">${icon}</span>
-                            </div>
-                            <div style="text-align:right;">
-                                <strong>${maxTemp}°C / ${minTemp}°C</strong><br>
-                                <span style="font-size:0.75rem; color:var(--text-muted);">💨 ${wind} km/h</span>
-                            </div>
-                        </div>
-                    `;
-                }
-                document.getElementById('weatherList').innerHTML = html;
-            } catch(e) {
-                document.getElementById('weatherList').innerHTML = "<p>Weather data currently unavailable.</p>";
-            }
-        }
-
-        function load7DayEvents() {
-            let html = '';
-            eventData.forEach((ev) => {
-                html += `
-                    <div class="list-card" onclick="openEventDetail(${ev.id})">
-                        <div>
-                            <strong>${ev.title}</strong> ${ev.promoted ? '<span class="badge-promoted">Featured</span>' : ''}<br>
-                            <span style="font-size:0.75rem; color:var(--text-muted);">📍 ${ev.spot}</span>
-                        </div>
-                        <span style="color:var(--accent); font-weight:700; font-size:0.9rem;">→</span>
-                    </div>
-                `;
-            });
-            document.getElementById('eventsList').innerHTML = html;
-        }
-
-        function openEventDetail(eventId) {
-            const ev = eventData.find(e => e.id === eventId);
-            if(!ev) return;
-
-            const modal = document.getElementById('actionModal');
-            const title = document.getElementById('modalTitle');
-            const body = document.getElementById('modalBody');
-            const submitBtn = document.getElementById('modalSubmitBtn');
-
-            title.innerText = ev.title;
-            submitBtn.style.display = "none";
-
-            body.innerHTML = `
-                <img src="${ev.image}" class="event-detail-banner" alt="${ev.title}">
-                <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.8rem; line-height:1.4;">${ev.desc}</p>
-                <div style="background:#0F172A; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
-                    <p style="margin-bottom:0.4rem;">📍 <strong>Address:</strong> ${ev.address}</p>
-                    <p>🕒 <strong>Hours:</strong> ${ev.time}</p>
-                </div>
-            `;
-
-            modal.style.display = 'flex';
-        }
-
-        function updateFoodQty(itemName, delta) {
-            foodQuantities[itemName] = Math.max(0, (foodQuantities[itemName] || 0) + delta);
-            const el = document.getElementById(`qty-${itemName.replace(/[^a-zA-Z0-9]/g, '')}`);
-            if (el) el.innerText = foodQuantities[itemName];
-            calculateOrderTotal();
-        }
-
-        function calculateOrderTotal() {
-            let total = 0;
-            Object.keys(menuData).forEach(cat => {
-                menuData[cat].forEach(item => {
-                    const qty = foodQuantities[item.name] || 0;
-                    total += qty * item.price;
-                });
-            });
-            const totalDisplay = document.getElementById('orderTotalAmount');
-            if (totalDisplay) {
-                totalDisplay.innerText = `R${total.toFixed(2)}`;
-            }
-            return total;
-        }
-
-        function openWhatsApp() {
-            const msg = `Hi Reception, I am ${guestName} staying in ${roomNumber}. I have a general question regarding my stay.`;
-            window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, "_blank");
-        }
-
-        function openGateDemo() {
-            const msg = `*Gate Access Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nAction: Please open main gate`;
-            window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, "_blank");
-        }
-
-        function openModal(type) {
-            currentModalType = type;
-            const modal = document.getElementById('actionModal');
-            const title = document.getElementById('modalTitle');
-            const body = document.getElementById('modalBody');
-            const submitBtn = document.getElementById('modalSubmitBtn');
-            submitBtn.style.display = "block";
-
-            if(type === 'wifi') {
-                title.innerText = "Wi-Fi Access";
-                body.innerHTML = `
-                    <div style="background:#0F172A; padding:1rem; border-radius:10px; border:1px solid var(--border); margin-bottom:1rem;">
-                        <p style="font-size:0.85rem; margin-bottom:0.4rem;">Network: <strong>Familia_Guest_WiFi</strong></p>
-                        <p style="font-size:0.85rem;">Password: <strong id="wifiPass">Familia2026!</strong></p>
-                    </div>
-                    <button class="btn-submit" onclick="copyWifi()">📋 Copy Password to Clipboard</button>
-                `;
-                submitBtn.style.display = "none";
-            } else if(type === 'facilities') {
-                title.innerText = "Guest Facilities";
-                let facHTML = `<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem; text-align:center;">Amenities available at Familia Guesthouse:</p><div class="amenities-grid">`;
-                
-                facilitiesList.forEach(item => {
-                    facHTML += `
-                        <div class="amenity-item">
-                            <i class="bi ${item.icon}"></i>
-                            <span>${item.title}</span>
-                        </div>
-                    `;
-                });
-                facHTML += `</div>`;
-                
-                body.innerHTML = facHTML;
-                submitBtn.style.display = "none";
-            } else if(type === 'breakfast') {
-                title.innerText = `Order Food & Drinks (${roomNumber})`;
-                let foodHTML = `
-                    <div class="transparency-box">
-                        <div class="transparency-title">🔍 Mains & Sides Info</div>
-                        <ul class="transparency-list">
-                            <li><strong>Beef, Fish & Chicken Mains:</strong> Includes choice of two sides (Deep Fried Fries, Onion Rings, Spinach Pocket & Pumpkin Pie, Rice, Salad) & Complimentary Dessert.</li>
-                        </ul>
-                    </div>
-                `;
-                
-                Object.keys(menuData).forEach(category => {
-                    foodHTML += `<div class="menu-category-header">${category}</div>`;
-                    menuData[category].forEach(item => {
-                        const cleanId = `qty-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
-                        foodHTML += `
-                            <div class="food-item-row">
-                                <span class="food-item-label">${item.name} <strong style="color:#FDBA74;">(R${item.price})</strong></span>
-                                <div class="qty-controls">
-                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', -1)">-</button>
-                                    <span class="qty-val" id="${cleanId}">${foodQuantities[item.name] || 0}</span>
-                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', 1)">+</button>
-                                </div>
-                            </div>
-                        `;
-                    });
-                });
-
-                foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem; display:block;">Sides Choice & Special Instructions:</label>
-                    <input type="text" id="sideNotes" placeholder="e.g. Deep Fried Fries, Onion Rings...">
-
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">Preferred Serving Time:</label>
-                    <input type="time" id="bfTime" value="18:30">
-
-                    <div class="order-total-bar">
-                        <span>Total Amount:</span>
-                        <span id="orderTotalAmount">R0.00</span>
-                    </div>
-                `;
-                body.innerHTML = foodHTML;
-                calculateOrderTotal();
-            } else if(type === 'housekeeping') {
-                title.innerText = `Housekeeping (${roomNumber})`;
-                body.innerHTML = `
-                    <label style="font-size:0.8rem; color:var(--text-muted);">Select Service:</label>
-                    <select id="hkOption">
-                        <option>Fresh Bath Towels</option>
-                        <option>Full Room Cleaning</option>
-                        <option>Extra Pillows & Blankets</option>
-                        <option>Refill Coffee/Tea Station</option>
-                    </select>
-                `;
-            } else if(type === 'loadshedding') {
-                title.innerText = "Power & Backup Status";
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Groblersdal Grid Status: <strong>Normal</strong><br>Solar and backup inverter system active for Wi-Fi, TV, and room lights.</p>`;
-                submitBtn.style.display = "none";
-            } else if(type === 'issue') {
-                title.innerText = `Report Issue (${roomNumber})`;
-                body.innerHTML = `
-                    <label style="font-size:0.8rem; color:var(--text-muted);">Describe problem:</label>
-                    <textarea id="issueText" rows="3" placeholder="e.g. Aircon remote, hot water, extra towel needed..."></textarea>
-                `;
-            } else if(type === 'manual') {
-                title.innerText = "House Manual & Rules";
-                body.innerHTML = `
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-info-circle"></i> General Rules</div>
-                        <ul class="manual-list">
-                            <li>Guests have no access to rooms marked <strong>"Staff Only"</strong>.</li>
-                            <li>Living room, dining room, pool, and braai area are common areas.</li>
-                            <li>Cooking/flammables in guest rooms are strictly prohibited.</li>
-                            <li>Guest rooms may not be used for commercial/business activities.</li>
-                            <li>Pets are strictly not allowed on the property.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-cup-hot"></i> Dining Services</div>
-                        <ul class="manual-list">
-                            <li><strong>Breakfast:</strong> Served in dining room/patio from <strong>07h00 - 09h00</strong>. Advise arrival if alternate timing is required.</li>
-                            <li><strong>Dinner:</strong> Served <strong>19h00 - 20h00</strong> at extra cost. Pre-book at reception by <strong>13h00</strong>.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-p-square"></i> Parking & Gate</div>
-                        <ul class="manual-list">
-                            <li>Free undercover parking available for all guests.</li>
-                            <li><strong>Motorized Gate:</strong> Do not park in the pathway; closes automatically after a few seconds.</li>
-                            <li>Do not leave valuables in parked vehicles. Management accepts no responsibility for loss.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-no-smoking"></i> Smoking Policy</div>
-                        <ul class="manual-list">
-                            <li>Smoking is <strong>strictly forbidden inside</strong> the house.</li>
-                            <li>Permitted outside in designated yard/braai areas using provided ashtrays.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-water"></i> Plumbing Guidelines</div>
-                        <ul class="manual-list">
-                            <li>Only toilet paper may be flushed.</li>
-                            <li>No wipes, sanitary items, or cotton buds down toilets.</li>
-                            <li>Blockage clearance costs will be charged to the guest.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-volume-mute"></i> Noise & Quiet Hours</div>
-                        <ul class="manual-list">
-                            <li>Strict quiet hours apply from <strong>22h00 to 08h00</strong>.</li>
-                            <li>No loud audio/music that disturbs other guests.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-tsunami"></i> Pool & Braai Area</div>
-                        <ul class="manual-list">
-                            <li><strong>Pool Hours:</strong> 08h00 to 20h00 (Use at own risk; children must be supervised).</li>
-                            <li><strong>Braai Area:</strong> Clean after use. Never leave open flames unattended.</li>
-                        </ul>
-                    </div>
-
-                    <div class="manual-section">
-                        <div class="manual-section-title"><i class="bi bi-shield-lock"></i> Security & Policies</div>
-                        <ul class="manual-list">
-                            <li>In-room safes provided. Always lock doors when leaving.</li>
-                            <li>Turn off lights/taps when leaving to conserve power and water.</li>
-                        </ul>
-                    </div>
-                `;
-                submitBtn.style.display = "none";
-            } else if(type === 'emergency') {
-                title.innerText = "Emergency Numbers";
-                body.innerHTML = `<p style="font-size:0.85rem; line-height:1.6;">• Groblersdal Police: 013 262 8300<br>• Medical Emergency: 10177<br>• Reception Direct: +27 82 821 5975</p>`;
-                submitBtn.style.display = "none";
-            } else if(type === 'checkout') {
-                title.innerText = `Express Check-Out (${roomNumber})`;
-                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Checking out today, ${guestName}? Tap submit to notify reception and drop keys.</p>`;
-            }
-
-            modal.style.display = 'flex';
-        }
-
-        function copyWifi() {
-            navigator.clipboard.writeText("Familia2026!");
-            alert("Wi-Fi password copied!");
-        }
-
-        function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
-        
-        function submitRequest() {
-            let message = "";
-
-            if (currentModalType === 'breakfast') {
-                const time = document.getElementById('bfTime').value;
-                const sideNotes = document.getElementById('sideNotes') ? document.getElementById('sideNotes').value.trim() : "";
-                const grandTotal = calculateOrderTotal();
-                
-                let selectedItems = [];
-                Object.keys(menuData).forEach(cat => {
-                    menuData[cat].forEach(item => {
-                        const qty = foodQuantities[item.name] || 0;
-                        if (qty > 0) {
-                            selectedItems.push(`${qty}x ${item.name} (R${item.price * qty})`);
-                        }
-                    });
-                });
-
-                if (selectedItems.length === 0) {
-                    alert("Please select at least one menu item using the + button.");
-                    return;
-                }
-
-                message = `*Food & Drinks Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\n\n*Total Amount: R${grandTotal.toFixed(2)}*\nServing Time: ${time}`;
-                if (sideNotes) {
-                    message += `\nSides/Notes: ${sideNotes}`;
-                }
-            } else if (currentModalType === 'housekeeping') {
-                const opt = document.getElementById('hkOption').value;
-                message = `*Housekeeping Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nRequest: ${opt}`;
-            } else if (currentModalType === 'issue') {
-                const issue = document.getElementById('issueText').value;
-                message = `*Maintenance Issue Reported*\nGuest: ${guestName}\nRoom: ${roomNumber}\nDetails: ${issue}`;
-            } else if (currentModalType === 'checkout') {
-                message = `*Express Check-Out Notification*\nGuest: ${guestName}\nRoom: ${roomNumber}\nStatus: Ready to check out`;
-            }
-
-            if (message) {
-                window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
-            }
-            closeModal();
-        }
-
-        // Initialize Page
-        window.addEventListener('DOMContentLoaded', () => {
-            parseURLParameters();
-            load7DayWeather();
-            load7DayEvents();
-            
-            const savedCheckIn = localStorage.getItem('checkinTimestamp');
-            if(savedCheckIn) updateCheckInUI(savedCheckIn);
-
+            // Hide Toast after 3 seconds & redirect to action URL (e.g. WhatsApp)
             setTimeout(() => {
-                showWelcomeModal(guestName, roomNumber);
-            }, 150);
-        });
+                toast.classList.remove('show');
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                }
+            }, 1200);
+        }
     </script>
 </body>
 </html>
