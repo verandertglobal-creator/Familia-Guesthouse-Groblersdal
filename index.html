@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Familia Guesthouse & Boutique Hotel | Guest Portal</title>
+    <!-- Web App Manifest for Save to Mobile -->
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiRmFtaWxpYSBHdWVzdGhvdXNlIFBvcnRhbCIsInNob3J0X25hbWUiOiJGYW1pbGlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNTRjJGQkEiLCJ0aGVtZV9jb2xvciI6IiNEOTc3MDYifQ==">
+    <meta name="theme-color" content="#D97706">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
             --bg-color: #0F172A;
@@ -58,38 +62,6 @@
             box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
         }
 
-        /* Logo Container with Solid White Background */
-        .logo-container {
-            display: inline-block;
-            background: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            margin-bottom: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .logo-container img {
-            height: 42px;
-            width: auto;
-            display: block;
-        }
-
-        /* Welcome Popup Logo Container with Solid White Background */
-        .modal-logo-container {
-            display: inline-block;
-            background: #ffffff;
-            padding: 0.6rem 1.2rem;
-            border-radius: 14px;
-            margin-bottom: 0.8rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .modal-logo-container img {
-            height: 55px;
-            width: auto;
-            display: block;
-        }
-
         .hero-banner .badge {
             display: inline-block;
             background: rgba(217, 119, 6, 0.35);
@@ -129,7 +101,7 @@
             margin-top: 0.2rem;
         }
 
-        /* Event & Widget Detail Banner Image */
+        /* Event Detail Banner Image */
         .event-detail-banner {
             width: 100%;
             height: 160px;
@@ -234,6 +206,97 @@
         .widget-btn.full-width { grid-column: span 2; }
         .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
 
+        /* Portal Image Styling */
+        .portal-image {
+            grid-column: span 2;
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            margin-top: -0.3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Social Icons Grid Bar */
+        .social-icons-row {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .social-icon-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 0.3rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .social-icon-btn i {
+            font-size: 1.25rem;
+            color: #FDBA74;
+        }
+
+        .social-icon-btn:hover {
+            background: rgba(217, 119, 6, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* House Manual Styling */
+        .manual-section {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .manual-section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #FDBA74;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.3rem;
+        }
+
+        .manual-list {
+            list-style: none;
+            font-size: 0.78rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .manual-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .manual-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         /* Transparency Box */
         .transparency-box {
             background: rgba(15, 23, 42, 0.9);
@@ -276,6 +339,18 @@
             left: 0;
         }
 
+        /* Food Category Header */
+        .menu-category-header {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #FDBA74;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 1.2rem 0 0.5rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
         /* Food Quantity Counter Controls */
         .food-item-row {
             display: flex;
@@ -289,9 +364,10 @@
         }
 
         .food-item-label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-main);
+            max-width: 65%;
         }
 
         .qty-controls {
@@ -323,6 +399,54 @@
             font-weight: 700;
             min-width: 20px;
             text-align: center;
+        }
+
+        /* Total Price Display Bar */
+        .order-total-bar {
+            background: rgba(217, 119, 6, 0.15);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #FDBA74;
+        }
+
+        /* Amenities Modal Grid */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .amenity-item {
+            background: #0F172A;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+        }
+
+        .amenity-item i {
+            font-size: 1.5rem;
+            color: #FDBA74;
+        }
+
+        .amenity-item span {
+            font-size: 0.78rem;
+            color: var(--text-main);
+            font-weight: 500;
+            line-height: 1.2;
         }
 
         /* Event & Weather Cards */
@@ -377,7 +501,7 @@
             border-radius: 20px; 
             padding: 1.5rem; 
             width: 100%; 
-            max-width: 420px;
+            max-width: 440px;
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
@@ -394,12 +518,6 @@
             border: none; border-radius: 8px; color: #FFF; font-weight: 600; cursor: pointer;
         }
 
-        .social-link-btn {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 0.8rem; margin-bottom: 0.6rem; border-radius: 10px;
-            text-decoration: none; font-weight: 600; color: #FFF; font-size: 0.85rem;
-        }
-
         .footer-note { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 1.25rem; }
         .footer-note a { color: var(--accent); text-decoration: none; }
     </style>
@@ -407,12 +525,9 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Accommodation Banner -->
+        <!-- Hero Accommodation Banner (No Logo) -->
         <div class="hero-banner">
-            <div class="logo-container">
-                <img src="https://www.familiaguesthouse.co.za/images/logo.png" alt="Familia Guesthouse Logo" onerror="this.src='https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg'">
-            </div>
-            <div><span class="badge">Groblersdal • Sekhukhune</span></div>
+            <span class="badge">Groblersdal • Sekhukhune</span>
             <h1>Familia Guesthouse</h1>
             <div class="guest-welcome-subtitle" id="bannerWelcomeText">Welcome, Guest!</div>
             <p>Boutique Accommodation Portal</p>
@@ -424,7 +539,7 @@
                 <h4 id="checkinTitle">Check-In Arrival Log</h4>
                 <p id="checkinTime">Tap to record arrival</p>
             </div>
-            <button class="btn-checkin" id="btnCheckinMain" onclick="processCheckIn()">Check In</button>
+            <button class="btn-checkin" id="checkinBtn" onclick="processCheckIn()">Check In</button>
         </div>
 
         <!-- Navigation Tabs -->
@@ -440,11 +555,15 @@
                 <button class="widget-btn highlight full-width" onclick="openGateDemo()">
                     🔒 Open Main Security Gate
                 </button>
+                <img src="https://b-cdn.springnest.com/media/img/1cw/429-20240108b508c97.jpg?crop=1772%2C886%2C0%2C47&width=1772&quality=78" alt="Open Security Gate" class="portal-image">
                 <button class="widget-btn" onclick="openModal('wifi')">
                     📶 Wi-Fi Access
                 </button>
                 <button class="widget-btn" onclick="openModal('breakfast')">
-                    🍳 Meals & Drinks
+                    🍳 Food Menu
+                </button>
+                <button class="widget-btn" onclick="openModal('facilities')">
+                    🏨 Guest Facilities
                 </button>
                 <button class="widget-btn" onclick="openModal('housekeeping')">
                     🧹 Housekeeping
@@ -461,15 +580,40 @@
                 <button class="widget-btn" onclick="openModal('emergency')">
                     🚨 Emergency Info
                 </button>
-                <button class="widget-btn" onclick="openModal('checkout')">
+                <button class="widget-btn full-width" onclick="openModal('checkout')">
                     🔑 Express Check-Out
                 </button>
-                <button class="widget-btn highlight full-width" onclick="openModal('socials')">
-                    🌐 Our Website & Links
+                <img src="https://b-cdn.springnest.com/media/img/1cw/223-202401087bf1595.jpg?crop=1772%2C886%2C0%2C92&width=1772&quality=78" alt="Express Check-Out" class="portal-image">
+                
+                <!-- Save to Mobile / Add to Home Screen Button (Claude Addition) -->
+                <button class="widget-btn full-width" id="saveToMobileBtn" style="background: rgba(217, 119, 6, 0.25); border-color: var(--accent);" onclick="promptSaveToMobile()">
+                    📱 Save Portal to Phone (Home Screen)
                 </button>
+
+                <!-- Social & External Link Shortcut Icons -->
+                <div class="social-icons-row">
+                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-globe"></i>
+                        <span>Website</span>
+                    </a>
+                    <a href="https://www.facebook.com/people/Familia-Guesthouse/100064208224069/" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.google.com/maps/place/Familia+Guesthouse/@-25.17331,29.38624,15z/data=!4m9!3m8!1s0x1ec0351c59a66f03:0x61c84b53e92c627d!5m2!4m1!1i2!8m2!3d-25.17331!4d29.38624!16s%2Fg%2F11dzddq95p?Tentry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="social-icon-btn">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Google Map</span>
+                    </a>
+                    <a href="mailto:admin@familiaguesthouse.co.za" class="social-icon-btn">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Email Us</span>
+                    </a>
+                </div>
+
                 <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
                     💬 Chat with Reception (WhatsApp)
                 </button>
+                <img src="https://b-cdn.springnest.com/media/img/1cw/411-202401082cee7cc.jpg?crop=1772%2C886%2C0%2C47&width=1772&quality=78" alt="Chat with Reception" class="portal-image">
             </div>
         </div>
 
@@ -504,21 +648,248 @@
         let guestName = "Guest";
         let roomNumber = "Room";
         let currentModalType = "";
+        let deferredPrompt = null;
 
-        let foodQuantities = {
-            "Full English Breakfast": 0,
-            "Continental Breakfast": 0,
-            "Dinner (R200/person)": 0,
-            "Soft Drinks (R17.50 each)": 0,
-            "Fresh Brewed Coffee": 0,
-            "Fresh Juice": 0
+        // Capture PWA install event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        function promptSaveToMobile() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback instructions modal for browsers where auto-prompt isn't fired
+                const modal = document.getElementById('actionModal');
+                const title = document.getElementById('modalTitle');
+                const body = document.getElementById('modalBody');
+                const submitBtn = document.getElementById('modalSubmitBtn');
+                title.innerText = "📱 Save Portal to Phone";
+                submitBtn.style.display = "none";
+                body.innerHTML = `
+                    <div style="background:#0F172A; padding:1rem; border-radius:10px; border:1px solid var(--border); font-size:0.85rem; line-height:1.6;">
+                        <p style="color:#FDBA74; font-weight:600; margin-bottom:0.5rem;">How to add to your Home Screen:</p>
+                        <p><strong>iPhone / Safari:</strong> Tap the <em>Share</em> icon at the bottom of your browser, scroll down, and select <strong>"Add to Home Screen"</strong>.</p>
+                        <p style="margin-top:0.5rem;"><strong>Android / Chrome:</strong> Tap the <em>Menu</em> (three dots) in the top right corner and select <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>.</p>
+                    </div>
+                `;
+                modal.style.display = 'flex';
+            }
+        }
+
+        // Updated menu items with prices (R)
+        const menuData = {
+            "Beef": [
+                { name: "T-Bone Steak", price: 210 },
+                { name: "Rump Steak", price: 175 },
+                { name: "Oxtail", price: 205 }
+            ],
+            "Fish": [
+                { name: "Deep Fried Hake", price: 180 }
+            ],
+            "Chicken": [
+                { name: "Chicken Schnitzel", price: 160 },
+                { name: "Mexican Chicken", price: 165 }
+            ],
+            "Pizzas": [
+                { name: "Mona Lisa Pizza", price: 145 },
+                { name: "Tarantino Pizza", price: 155 },
+                { name: "Michelangelo Pizza", price: 150 },
+                { name: "BBQ Chicken Pizza", price: 145 },
+                { name: "Mexican Pizza", price: 150 },
+                { name: "El Presidento Pizza", price: 160 },
+                { name: "Pepperoni Pizza", price: 135 },
+                { name: "Chicken Mayonnaise Pizza", price: 140 },
+                { name: "Pac Man (Four Cheeses) Pizza", price: 145 },
+                { name: "Vegetarian Pizza", price: 130 },
+                { name: "Margarita Pizza", price: 110 },
+                { name: "Hawaiian Pizza", price: 135 }
+            ],
+            "Cecilia's Salads": [
+                { name: "Nacho Chicken Salad", price: 150 },
+                { name: "BBQ Beef Strip Salad", price: 130 },
+                { name: "Chicken Avo Bacon Salad", price: 130 }
+            ],
+            "Café Favorites (Served with Chips or Salad)": [
+                { name: "Chicken Livers & Toast", price: 98 },
+                { name: "Creamy Chicken & Cheese Tramezzini", price: 120 },
+                { name: "BBQ Beef & Chicken Tramezzini", price: 120 },
+                { name: "Beef Quiche", price: 89 },
+                { name: "Chicken Quiche", price: 89 }
+            ],
+            "Signature Pies": [
+                { name: "Duck Pie", price: 180 },
+                { name: "Beef & Red Wine Pie", price: 175 },
+                { name: "Chicken & Mushroom Pie", price: 175 }
+            ],
+            "Hearty Meals": [
+                { name: "Chicken Schnitzel & Chips", price: 160 },
+                { name: "Butter Chicken Curry & Rice", price: 152 },
+                { name: "Beef Jaffle & Chips", price: 105 }
+            ],
+            "Burgers": [
+                { name: "Classic Beef Burger", price: 150 },
+                { name: "Chicken Burger", price: 150 },
+                { name: "Add-On: Egg", price: 15 },
+                { name: "Add-On: Bacon", price: 25 }
+            ],
+            "Sweets & Desserts": [
+                { name: "Chocolate Croissant", price: 40 },
+                { name: "Chocolate Vulcano & Ice Cream", price: 55 },
+                { name: "Cake of the Day", price: 65 }
+            ],
+            "Hot Drinks": [
+                { name: "Americano", price: 36 },
+                { name: "Cappuccino", price: 45 },
+                { name: "Latte", price: 48 },
+                { name: "Hot Chocolate", price: 42 },
+                { name: "Almond Milk Alternative", price: 15 },
+                { name: "Extra Espresso Shot", price: 15 }
+            ],
+            "Milkshakes": [
+                { name: "Chocolate Milkshake", price: 49 },
+                { name: "Bubblegum Milkshake", price: 49 },
+                { name: "Banana Milkshake", price: 49 },
+                { name: "Strawberry Milkshake", price: 49 },
+                { name: "Salted Caramel Milkshake", price: 49 },
+                { name: "Vanilla Milkshake", price: 49 },
+                { name: "Coffee Milkshake", price: 49 }
+            ],
+            "La Bush Bar - Wines": [
+                { name: "Fynbos Merlot 3L", price: 370 },
+                { name: "Fynbos Pinotage 3L", price: 370 },
+                { name: "Fynbos Chenin Blanc 3L", price: 370 },
+                { name: "Boekenhoutskloof The Choc Blok", price: 950 },
+                { name: "Raka Malbec", price: 429 },
+                { name: "Rupert & Rothschild Classique", price: 390 },
+                { name: "Kanonkop Kadette", price: 230 },
+                { name: "Zonneblom Pinotage", price: 250 },
+                { name: "Raka Quinery", price: 429 },
+                { name: "J.C. Le Roux La Chanson", price: 200 },
+                { name: "Krone Kaaimansgat Blanc de Blancs", price: 750 },
+                { name: "Spier Pinotage", price: 219 },
+                { name: "Spier Merlot", price: 219 },
+                { name: "Slanghoek Cabernet Sauvignon", price: 229 },
+                { name: "Fat Bastard", price: 349 },
+                { name: "Spier Sauvignon Blanc", price: 200 },
+                { name: "Kleine Salze Sauvignon Blanc", price: 200 },
+                { name: "Boekenhoutskloof", price: 1200 },
+                { name: "Diemersdal Sauv Blanc", price: 200 },
+                { name: "Durbanville Hills Chardonnay", price: 200 },
+                { name: "Slanghoek Chenin Blanc", price: 200 },
+                { name: "Nederburg Baronne", price: 209 },
+                { name: "Nederburg Merlot", price: 209 },
+                { name: "Laborie Merlot", price: 209 },
+                { name: "HPF Kleinboet", price: 350 },
+                { name: "Jakkalsvlei Moscato Rose", price: 180 },
+                { name: "Jakkalsvlei Merlot Red", price: 270 },
+                { name: "Jakkalsvlei Moscato White", price: 180 },
+                { name: "Jakkalsvlei Pinotage Red", price: 270 },
+                { name: "Wine Per Glass", price: 55 }
+            ],
+            "La Bush Bar - Beers & Ciders": [
+                { name: "Black Label", price: 30 },
+                { name: "Castle Lager", price: 30 },
+                { name: "Castle Lite", price: 35 },
+                { name: "Flying Fish", price: 35 },
+                { name: "Brutal Fruit", price: 30 },
+                { name: "Amstel", price: 35 },
+                { name: "Heineken", price: 35 },
+                { name: "Hunter's Dry", price: 40 },
+                { name: "Hunters Gold", price: 35 },
+                { name: "Savannah Dry (500ml)", price: 45 },
+                { name: "Ice Tropez", price: 130 },
+                { name: "Windhoek Draught (440ml)", price: 45 },
+                { name: "Windhoek Draught (500ml)", price: 40 },
+                { name: "Hunter's Extreme", price: 40 },
+                { name: "Corona", price: 45 },
+                { name: "Corona Zero", price: 38 },
+                { name: "Stella", price: 35 }
+            ],
+            "La Bush Bar - Spirits Per Tot": [
+                { name: "Gordon's Gin", price: 25 },
+                { name: "Richelieu Brandy", price: 30 },
+                { name: "Red Square", price: 45 },
+                { name: "Wildebeest Brandy", price: 30 },
+                { name: "Klipdrift", price: 30 },
+                { name: "Klipdrift Premium", price: 35 },
+                { name: "Skyy Peach", price: 30 },
+                { name: "Skyy Rasberry", price: 30 },
+                { name: "Spice Gold", price: 30 },
+                { name: "Red Heart", price: 30 },
+                { name: "Johnnie Walker", price: 35 },
+                { name: "The Glenlivet 15 Year", price: 65 },
+                { name: "Dimple Haig 15 Year Old", price: 45 },
+                { name: "Bell's Scotch", price: 35 },
+                { name: "Chivas Regal 12 Year Old", price: 35 },
+                { name: "Chivas Regal XV", price: 35 },
+                { name: "Tequila", price: 40 },
+                { name: "Loch Lomond", price: 40 },
+                { name: "Jack Daniel's", price: 35 },
+                { name: "Glenfiddich", price: 40 },
+                { name: "Jameson Irish", price: 40 },
+                { name: "Hennessy VS Cognac", price: 45 }
+            ],
+            "La Bush Bar - Cocktails & Mocktails": [
+                { name: "Tequila Sunrise", price: 85 },
+                { name: "Strawberry Daiquiri", price: 85 },
+                { name: "Old Fashioned", price: 85 },
+                { name: "Pina Colada", price: 85 },
+                { name: "Shirley Temple Mocktail", price: 45 },
+                { name: "Fruit Mocktail", price: 45 },
+                { name: "Virgin Mojito", price: 45 },
+                { name: "Elderflower Gin", price: 60 },
+                { name: "Blood Orange Gin", price: 70 },
+                { name: "La Bush Craft Cocktail", price: 70 }
+            ]
         };
 
-        // Parse URL Parameters (e.g. ?guest=John&room=Room%204)
+        let foodQuantities = {};
+
+        // Initialize food quantities dictionary
+        Object.keys(menuData).forEach(cat => {
+            menuData[cat].forEach(item => {
+                foodQuantities[item.name] = 0;
+            });
+        });
+
+        const facilitiesList = [
+            { title: "24-hour Security", icon: "bi-shield-check" },
+            { title: "Air Conditioning", icon: "bi-snow" },
+            { title: "Complimentary Wi-Fi", icon: "bi-wifi" },
+            { title: "Disability Services", icon: "bi-person-wheelchair" },
+            { title: "Swimming Pool", icon: "bi-water" },
+            { title: "Satellite / Cable TV", icon: "bi-tv" },
+            { title: "Parking (covered & secure)", icon: "bi-p-square" },
+            { title: "Bird Watching", icon: "bi-binoculars" },
+            { title: "Cleaning Services", icon: "bi-stars" },
+            { title: "Communal Dining", icon: "bi-cup-hot" },
+            { title: "Credit Card Facilities", icon: "bi-credit-card" },
+            { title: "Dinner on Request", icon: "bi-egg-fried" },
+            { title: "Eco Friendly", icon: "bi-recycle" },
+            { title: "Electrical Outlets", icon: "bi-plug" },
+            { title: "Fridge", icon: "bi-box-seam" },
+            { title: "Iron & Ironing Board", icon: "bi-border-style" },
+            { title: "Lounge Area", icon: "bi-couch" },
+            { title: "Verandah", icon: "bi-sun" }
+        ];
+
+        // Parse URL Parameters (e.g. ?guest=Johann&room=Room%20101)
         function parseURLParameters() {
             const params = new URLSearchParams(window.location.search);
-            if (params.has('guest')) guestName = params.get('guest');
-            if (params.has('room')) roomNumber = params.get('room');
+            if (params.has('guest') && params.get('guest').trim() !== '') {
+                guestName = params.get('guest').trim();
+            }
+            if (params.has('room') && params.get('room').trim() !== '') {
+                roomNumber = params.get('room').trim();
+            }
 
             document.getElementById('bannerWelcomeText').innerText = `Welcome, ${guestName}! (${roomNumber})`;
             document.getElementById('checkinTitle').innerText = `${guestName} • ${roomNumber}`;
@@ -533,11 +904,9 @@
             title.innerText = `👋 Welcome to Familia Guesthouse!`;
             submitBtn.style.display = "none";
 
+            // Welcome popup modified to have no logo
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
-                    <div class="modal-logo-container">
-                        <img src="https://www.familiaguesthouse.co.za/images/logo.png" alt="Familia Guesthouse Logo" onerror="this.src='https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg'">
-                    </div>
                     <p style="font-size:1.05rem; font-weight:600; color:#FDBA74; margin-bottom:0.6rem;">Hello ${guest}!</p>
                     <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
                 </div>
@@ -546,7 +915,7 @@
             modal.style.display = 'flex';
         }
 
-        // Groblersdal Local Attractions with Image Thumbnails
+        // Groblersdal Local Attractions
         const eventData = [
             {
                 id: 0,
@@ -622,15 +991,11 @@
         function updateCheckInUI(timestamp) {
             if(timestamp) {
                 document.getElementById('checkinTime').innerText = `Checked In: ${timestamp}`;
-                const btn = document.getElementById('btnCheckinMain');
-                if (btn) {
-                    btn.innerText = "Logged";
-                    btn.style.background = "#64748B";
-                }
+                document.getElementById('checkinBtn').innerText = "Logged";
+                document.getElementById('checkinBtn').style.background = "#64748B";
             }
         }
 
-        // Open-Meteo Weather for Groblersdal
         async function load7DayWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-25.1625&longitude=29.3903&daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Africa%2FJohannesburg');
@@ -674,12 +1039,9 @@
             eventData.forEach((ev) => {
                 html += `
                     <div class="list-card" onclick="openEventDetail(${ev.id})">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="${ev.image}" alt="${ev.title}" style="width: 45px; height: 45px; border-radius: 8px; object-fit: cover;">
-                            <div>
-                                <strong>${ev.title}</strong> ${ev.promoted ? '<span class="badge-promoted">Featured</span>' : ''}<br>
-                                <span style="font-size:0.75rem; color:var(--text-muted);">📍 ${ev.spot}</span>
-                            </div>
+                        <div>
+                            <strong>${ev.title}</strong> ${ev.promoted ? '<span class="badge-promoted">Featured</span>' : ''}<br>
+                            <span style="font-size:0.75rem; color:var(--text-muted);">📍 ${ev.spot}</span>
                         </div>
                         <span style="color:var(--accent); font-weight:700; font-size:0.9rem;">→</span>
                     </div>
@@ -716,6 +1078,22 @@
             foodQuantities[itemName] = Math.max(0, (foodQuantities[itemName] || 0) + delta);
             const el = document.getElementById(`qty-${itemName.replace(/[^a-zA-Z0-9]/g, '')}`);
             if (el) el.innerText = foodQuantities[itemName];
+            calculateOrderTotal();
+        }
+
+        function calculateOrderTotal() {
+            let total = 0;
+            Object.keys(menuData).forEach(cat => {
+                menuData[cat].forEach(item => {
+                    const qty = foodQuantities[item.name] || 0;
+                    total += qty * item.price;
+                });
+            });
+            const totalDisplay = document.getElementById('orderTotalAmount');
+            if (totalDisplay) {
+                totalDisplay.innerText = `R${total.toFixed(2)}`;
+            }
+            return total;
         }
 
         function openWhatsApp() {
@@ -746,49 +1124,64 @@
                     <button class="btn-submit" onclick="copyWifi()">📋 Copy Password to Clipboard</button>
                 `;
                 submitBtn.style.display = "none";
-            } else if(type === 'socials') {
-                title.innerText = "Familia Guesthouse Links";
-                body.innerHTML = `
-                    <a href="https://www.familiaguesthouse.co.za/" target="_blank" class="social-link-btn" style="background:#D97706;">Official Website</a>
-                    <a href="https://www.booking.com/hotel/za/familia-guesthouse.en-gb.html" target="_blank" class="social-link-btn" style="background:#003580;">Booking.com Page</a>
-                `;
-                submitBtn.style.display = "none";
-            } else if(type === 'breakfast') {
-                title.innerText = `Order Meals & Drinks (${roomNumber})`;
-                let foodHTML = `
-                    <div class="transparency-box">
-                        <div class="transparency-title">🔍 Transparency & Pricing Rules</div>
-                        <ul class="transparency-list">
-                            <li><strong>Breakfast:</strong> Complimentary for all booked guests.</li>
-                            <li><strong>Visiting Guests:</strong> Guests visiting from outside are welcome to join for breakfast at R200 per person.</li>
-                            <li><strong>Dinner:</strong> R200 per person.</li>
-                            <li><strong>Soft Drinks:</strong> R17.50 each.</li>
-                            <li><strong>Child Policy:</strong> Children 0 - 3 Free • Children 15 years Full price.</li>
-                        </ul>
-                    </div>
-
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem;">Select item quantities:</p>
-                `;
+            } else if(type === 'facilities') {
+                title.innerText = "Guest Facilities";
+                let facHTML = `<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem; text-align:center;">Amenities available at Familia Guesthouse:</p><div class="amenities-grid">`;
                 
-                Object.keys(foodQuantities).forEach(item => {
-                    const cleanId = `qty-${item.replace(/[^a-zA-Z0-9]/g, '')}`;
-                    foodHTML += `
-                        <div class="food-item-row">
-                            <span class="food-item-label">${item}</span>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateFoodQty('${item}', -1)">-</button>
-                                <span class="qty-val" id="${cleanId}">${foodQuantities[item]}</span>
-                                <button class="qty-btn" onclick="updateFoodQty('${item}', 1)">+</button>
-                            </div>
+                facilitiesList.forEach(item => {
+                    facHTML += `
+                        <div class="amenity-item">
+                            <i class="bi ${item.icon}"></i>
+                            <span>${item.title}</span>
                         </div>
                     `;
                 });
+                facHTML += `</div>`;
+                
+                body.innerHTML = facHTML;
+                submitBtn.style.display = "none";
+            } else if(type === 'breakfast') {
+                title.innerText = `Order Food & Drinks (${roomNumber})`;
+                let foodHTML = `
+                    <div class="transparency-box">
+                        <div class="transparency-title">🔍 Mains & Sides Info</div>
+                        <ul class="transparency-list">
+                            <li><strong>Beef, Fish & Chicken Mains:</strong> Includes choice of two sides (Deep Fried Fries, Onion Rings, Spinach Pocket & Pumpkin Pie, Rice, Salad) & Complimentary Dessert.</li>
+                        </ul>
+                    </div>
+                `;
+                
+                Object.keys(menuData).forEach(category => {
+                    foodHTML += `<div class="menu-category-header">${category}</div>`;
+                    menuData[category].forEach(item => {
+                        const cleanId = `qty-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
+                        foodHTML += `
+                            <div class="food-item-row">
+                                <span class="food-item-label">${item.name} <strong style="color:#FDBA74;">(R${item.price})</strong></span>
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', -1)">-</button>
+                                    <span class="qty-val" id="${cleanId}">${foodQuantities[item.name] || 0}</span>
+                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', 1)">+</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                });
 
                 foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; display:block;">Preferred Serving Time:</label>
-                    <input type="time" id="bfTime" value="07:30">
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem; display:block;">Sides Choice & Special Instructions:</label>
+                    <input type="text" id="sideNotes" placeholder="e.g. Deep Fried Fries, Onion Rings...">
+
+                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">Preferred Serving Time:</label>
+                    <input type="time" id="bfTime" value="18:30">
+
+                    <div class="order-total-bar">
+                        <span>Total Amount:</span>
+                        <span id="orderTotalAmount">R0.00</span>
+                    </div>
                 `;
                 body.innerHTML = foodHTML;
+                calculateOrderTotal();
             } else if(type === 'housekeeping') {
                 title.innerText = `Housekeeping (${roomNumber})`;
                 body.innerHTML = `
@@ -811,18 +1204,76 @@
                     <textarea id="issueText" rows="3" placeholder="e.g. Aircon remote, hot water, extra towel needed..."></textarea>
                 `;
             } else if(type === 'manual') {
-                title.innerText = "House Manual & Dining Info";
+                title.innerText = "House Manual & Rules";
                 body.innerHTML = `
-                    <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:0.8rem;">
-                        • <strong>Breakfast:</strong> Complimentary for booked guests (R200 for visiting outside guests).<br>
-                        • <strong>Dinner:</strong> R200 per person.<br>
-                        • <strong>Soft Drinks:</strong> R17.50 each.<br>
-                        • <strong>Children:</strong> Ages 0–3 Free • Age 15+ Full Price.<br>
-                        • <strong>Pool:</strong> Swimming pool open daily until 20:00.<br>
-                        • <strong>Aircon:</strong> Controls located on room wall.<br>
-                        • <strong>Braai:</strong> Garden braai facilities available on request.<br>
-                        • <strong>Parking:</strong> Secure free parking on site.
-                    </p>
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-info-circle"></i> General Rules</div>
+                        <ul class="manual-list">
+                            <li>Guests have no access to rooms marked <strong>"Staff Only"</strong>.</li>
+                            <li>Living room, dining room, pool, and braai area are common areas.</li>
+                            <li>Cooking/flammables in guest rooms are strictly prohibited.</li>
+                            <li>Guest rooms may not be used for commercial/business activities.</li>
+                            <li>Pets are strictly not allowed on the property.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-cup-hot"></i> Dining Services</div>
+                        <ul class="manual-list">
+                            <li><strong>Breakfast:</strong> Served in dining room/patio from <strong>07h00 - 09h00</strong>. Advise arrival if alternate timing is required.</li>
+                            <li><strong>Dinner:</strong> Served <strong>19h00 - 20h00</strong> at extra cost. Pre-book at reception by <strong>13h00</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-p-square"></i> Parking & Gate</div>
+                        <ul class="manual-list">
+                            <li>Free undercover parking available for all guests.</li>
+                            <li><strong>Motorized Gate:</strong> Do not park in the pathway; closes automatically after a few seconds.</li>
+                            <li>Do not leave valuables in parked vehicles. Management accepts no responsibility for loss.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-no-smoking"></i> Smoking Policy</div>
+                        <ul class="manual-list">
+                            <li>Smoking is <strong>strictly forbidden inside</strong> the house.</li>
+                            <li>Permitted outside in designated yard/braai areas using provided ashtrays.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-water"></i> Plumbing Guidelines</div>
+                        <ul class="manual-list">
+                            <li>Only toilet paper may be flushed.</li>
+                            <li>No wipes, sanitary items, or cotton buds down toilets.</li>
+                            <li>Blockage clearance costs will be charged to the guest.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-volume-mute"></i> Noise & Quiet Hours</div>
+                        <ul class="manual-list">
+                            <li>Strict quiet hours apply from <strong>22h00 to 08h00</strong>.</li>
+                            <li>No loud audio/music that disturbs other guests.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-tsunami"></i> Pool & Braai Area</div>
+                        <ul class="manual-list">
+                            <li><strong>Pool Hours:</strong> 08h00 to 20h00 (Use at own risk; children must be supervised).</li>
+                            <li><strong>Braai Area:</strong> Clean after use. Never leave open flames unattended.</li>
+                        </ul>
+                    </div>
+
+                    <div class="manual-section">
+                        <div class="manual-section-title"><i class="bi bi-shield-lock"></i> Security & Policies</div>
+                        <ul class="manual-list">
+                            <li>In-room safes provided. Always lock doors when leaving.</li>
+                            <li>Turn off lights/taps when leaving to conserve power and water.</li>
+                        </ul>
+                    </div>
                 `;
                 submitBtn.style.display = "none";
             } else if(type === 'emergency') {
@@ -849,19 +1300,28 @@
 
             if (currentModalType === 'breakfast') {
                 const time = document.getElementById('bfTime').value;
+                const sideNotes = document.getElementById('sideNotes') ? document.getElementById('sideNotes').value.trim() : "";
+                const grandTotal = calculateOrderTotal();
+                
                 let selectedItems = [];
-                Object.keys(foodQuantities).forEach(item => {
-                    if (foodQuantities[item] > 0) {
-                        selectedItems.push(`${foodQuantities[item]}x ${item}`);
-                    }
+                Object.keys(menuData).forEach(cat => {
+                    menuData[cat].forEach(item => {
+                        const qty = foodQuantities[item.name] || 0;
+                        if (qty > 0) {
+                            selectedItems.push(`${qty}x ${item.name} (R${item.price * qty})`);
+                        }
+                    });
                 });
 
                 if (selectedItems.length === 0) {
-                    alert("Please select at least one item using the + button.");
+                    alert("Please select at least one menu item using the + button.");
                     return;
                 }
 
-                message = `*Meal & Drink Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\nTime: ${time}`;
+                message = `*Food & Drinks Order*\nGuest: ${guestName}\nRoom: ${roomNumber}\nItems:\n- ${selectedItems.join('\n- ')}\n\n*Total Amount: R${grandTotal.toFixed(2)}*\nServing Time: ${time}`;
+                if (sideNotes) {
+                    message += `\nSides/Notes: ${sideNotes}`;
+                }
             } else if (currentModalType === 'housekeeping') {
                 const opt = document.getElementById('hkOption').value;
                 message = `*Housekeeping Request*\nGuest: ${guestName}\nRoom: ${roomNumber}\nRequest: ${opt}`;
