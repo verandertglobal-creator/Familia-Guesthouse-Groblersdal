@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Familia Guesthouse & Boutique Hotel | Guest Portal</title>
     <!-- Web App Manifest for Save to Mobile -->
-    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiRmFtaWxpYSBHdWVzdGhvdXNlIFBvcnRhbCIsInNob3J0X25hbWUiOiJGYW1pbGlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNTRjJGQkEiLCJ0aGVtZV9jb2xvciI6IiNEOTc3MDYifQ==">
-    <meta name="theme-color" content="#D97706">
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiRmFtaWxpYSBHdWVzdGhvdXNlIFBvcnRhbCIsInNob3J0X25hbWUiOiJGYW1pbGlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNGMUVBREEiLCJ0aGVtZV9jb2xvciI6IiM1NTU5MzMifQ==">
+    <meta name="theme-color" content="#555933">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --bg-color: #0F172A;
-            --card-bg: rgba(30, 41, 59, 0.85);
-            --accent: #D97706;
-            --accent-hover: #B45309;
-            --accent-green: #10B981;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --border: rgba(255, 255, 255, 0.12);
+            --bg-color: #F3EFEA;
+            --card-bg: rgba(255, 253, 250, 0.88);
+            --accent: #555933;         /* Olive Accent */
+            --accent-hover: #3E4224;
+            --accent-green: #4A6B52;   /* Muted Green Check-in */
+            --text-main: #2C2C2A;      /* Warm Dark Grey / Bronze */
+            --text-muted: #79756F;
+            --border: rgba(85, 89, 51, 0.18);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
+            background: linear-gradient(rgba(243, 239, 234, 0.8), rgba(238, 233, 226, 0.95)),
                         url('https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
             color: var(--text-main);
             display: flex;
@@ -43,7 +43,7 @@
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 50px -12px rgba(60, 55, 45, 0.15);
             overflow: hidden;
             position: relative;
         }
@@ -56,11 +56,10 @@
             margin-bottom: 1.25rem;
             padding: 1.75rem 1rem 1.25rem;
             text-align: center;
-            /* Dropped opacity/overlay adjusted from 15% to 65% for better contrast */
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.92) 100%),
+            background: linear-gradient(180deg, rgba(44, 44, 42, 0.55) 0%, rgba(44, 44, 42, 0.88) 100%),
                         url('https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78') center/cover no-repeat;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
         }
 
         .header-logo {
@@ -68,19 +67,19 @@
             height: 52px;
             border-radius: 50%;
             object-fit: contain;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(243, 239, 234, 0.9);
             border: 1.5px solid var(--accent);
             padding: 3px;
             margin: 0 auto 0.5rem auto;
             display: block;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
         .hero-banner .badge {
             display: inline-block;
-            background: rgba(217, 119, 6, 0.35);
-            border: 1px solid var(--accent);
-            color: #FDBA74;
+            background: rgba(85, 89, 51, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #F3EFEA;
             font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -89,7 +88,7 @@
             border-radius: 20px;
             margin-bottom: 0.4rem;
             backdrop-filter: blur(4px);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
 
         .hero-banner h1 {
@@ -97,22 +96,22 @@
             font-size: 1.55rem;
             font-weight: 700;
             color: #FFF;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.8);
             letter-spacing: 0.5px;
         }
 
         .guest-welcome-subtitle {
             font-size: 0.95rem;
-            color: #FDBA74;
+            color: #E8E2D5;
             font-weight: 600;
             margin-top: 0.3rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
         .hero-banner p {
             font-size: 0.8rem;
-            color: #E2E8F0;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+            color: #D8D2C5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
             margin-top: 0.2rem;
         }
 
@@ -128,7 +127,7 @@
 
         /* Quick Check-In Bar */
         .checkin-bar {
-            background: rgba(16, 185, 129, 0.12);
+            background: rgba(74, 107, 82, 0.08);
             border: 1px solid var(--accent-green);
             border-radius: 16px;
             padding: 0.9rem;
@@ -159,7 +158,7 @@
             display: flex;
             gap: 0.5rem;
             margin-bottom: 1.25rem;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(225, 219, 210, 0.6);
             padding: 0.3rem;
             border-radius: 12px;
             border: 1px solid var(--border);
@@ -196,7 +195,7 @@
         }
 
         .widget-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1rem;
@@ -210,16 +209,17 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .widget-btn:hover {
-            background: rgba(217, 119, 6, 0.15);
+            background: rgba(85, 89, 51, 0.1);
             border-color: var(--accent);
             transform: translateY(-2px);
         }
 
         .widget-btn.full-width { grid-column: span 2; }
-        .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
+        .widget-btn.highlight { background: rgba(85, 89, 51, 0.15); border-color: var(--accent); }
 
         /* Portal Image Styling */
         .portal-image {
@@ -242,7 +242,7 @@
         }
 
         .social-icon-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 0.75rem 0.3rem;
@@ -261,18 +261,18 @@
 
         .social-icon-btn i {
             font-size: 1.25rem;
-            color: #FDBA74;
+            color: var(--accent);
         }
 
         .social-icon-btn:hover {
-            background: rgba(217, 119, 6, 0.2);
+            background: rgba(85, 89, 51, 0.15);
             border-color: var(--accent);
             transform: translateY(-2px);
         }
 
         /* House Manual Styling */
         .manual-section {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(243, 239, 234, 0.7);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 0.85rem;
@@ -282,12 +282,12 @@
         .manual-section-title {
             font-size: 0.85rem;
             font-weight: 700;
-            color: #FDBA74;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(85, 89, 51, 0.12);
             padding-bottom: 0.3rem;
         }
 
@@ -314,7 +314,7 @@
 
         /* Transparency Box */
         .transparency-box {
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(243, 239, 234, 0.9);
             border: 1px solid var(--accent);
             border-radius: 12px;
             padding: 0.85rem;
@@ -324,7 +324,7 @@
         .transparency-title {
             font-size: 0.82rem;
             font-weight: 700;
-            color: #FDBA74;
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
@@ -358,7 +358,7 @@
         .menu-category-header {
             font-size: 0.85rem;
             font-weight: 700;
-            color: #FDBA74;
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin: 1.2rem 0 0.5rem 0;
@@ -371,7 +371,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0F172A;
+            background: #FFF;
             padding: 0.75rem;
             border-radius: 10px;
             border: 1px solid var(--border);
@@ -392,9 +392,9 @@
         }
 
         .qty-btn {
-            background: rgba(217, 119, 6, 0.2);
+            background: rgba(85, 89, 51, 0.15);
             border: 1px solid var(--accent);
-            color: #FFF;
+            color: var(--accent);
             width: 28px;
             height: 28px;
             border-radius: 6px;
@@ -407,7 +407,7 @@
             transition: all 0.15s;
         }
 
-        .qty-btn:hover { background: var(--accent); }
+        .qty-btn:hover { background: var(--accent); color: #FFF; }
 
         .qty-val {
             font-size: 0.9rem;
@@ -418,7 +418,7 @@
 
         /* Total Price Display Bar */
         .order-total-bar {
-            background: rgba(217, 119, 6, 0.15);
+            background: rgba(85, 89, 51, 0.12);
             border: 1px solid var(--accent);
             border-radius: 10px;
             padding: 0.75rem 1rem;
@@ -429,7 +429,7 @@
             align-items: center;
             font-weight: 700;
             font-size: 0.95rem;
-            color: #FDBA74;
+            color: var(--accent);
         }
 
         /* Amenities Modal Grid */
@@ -441,7 +441,7 @@
         }
 
         .amenity-item {
-            background: #0F172A;
+            background: #FFF;
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 0.85rem 0.6rem;
@@ -454,7 +454,7 @@
 
         .amenity-item i {
             font-size: 1.5rem;
-            color: #FDBA74;
+            color: var(--accent);
         }
 
         .amenity-item span {
@@ -466,7 +466,7 @@
 
         /* Event & Weather Cards */
         .list-card {
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 0.85rem;
@@ -480,11 +480,11 @@
 
         .list-card:hover {
             border-color: var(--accent);
-            background: rgba(30, 41, 59, 0.9);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .badge-promoted {
-            background: rgba(217, 119, 6, 0.25);
+            background: rgba(85, 89, 51, 0.15);
             border: 1px solid var(--accent);
             color: var(--accent);
             font-size: 0.65rem;
@@ -502,7 +502,7 @@
             left: 0; 
             width: 100%; 
             height: 100%;
-            background: rgba(15, 23, 42, 0.65); 
+            background: rgba(44, 44, 42, 0.5); 
             backdrop-filter: blur(8px);
             justify-content: center; 
             align-items: center; 
@@ -511,7 +511,7 @@
         }
 
         .modal-content {
-            background: #1E293B; 
+            background: #FCFBF9; 
             border: 1px solid var(--border);
             border-radius: 20px; 
             padding: 1.5rem; 
@@ -519,13 +519,14 @@
             max-width: 440px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+            color: var(--text-main);
         }
 
         .modal-content input, .modal-content select, .modal-content textarea {
             width: 100%; padding: 0.75rem; margin-top: 0.5rem; margin-bottom: 1rem;
-            border-radius: 8px; border: 1px solid var(--border); background: #0F172A;
-            color: #FFF; font-family: inherit;
+            border-radius: 8px; border: 1px solid var(--border); background: #FFF;
+            color: var(--text-main); font-family: inherit;
         }
 
         .btn-submit {
@@ -543,13 +544,13 @@
         <!-- Hero Accommodation Banner with Header Logo -->
         <div class="hero-banner">
             <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=200&q=80" alt="Familia Guesthouse Logo" class="header-logo" style="display:none;" />
-            <!-- Inline SVG Logo representing the attached FG badge -->
+            <!-- Inline SVG Logo representing the FG badge -->
             <svg class="header-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#1E293B" stroke-width="12"/>
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#D97706" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
-                <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#D97706" stroke-width="6" stroke-linecap="round"/>
-                <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#D97706">F</text>
-                <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F8FAFC">G</text>
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#2C2C2A" stroke-width="12"/>
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#555933" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
+                <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#555933" stroke-width="6" stroke-linecap="round"/>
+                <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#555933">F</text>
+                <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F3EFEA">G</text>
             </svg>
             <span class="badge">Groblersdal • Sekhukhune</span>
             <h1>Familia Guesthouse</h1>
@@ -577,7 +578,7 @@
         <div class="tab-content active" id="quick-access">
             <div class="widget-grid">
                 <!-- Save to Mobile Button moved up above Open Security Gate -->
-                <button class="widget-btn full-width" id="saveToMobileBtn" style="background: rgba(217, 119, 6, 0.25); border-color: var(--accent);" onclick="promptSaveToMobile()">
+                <button class="widget-btn full-width" id="saveToMobileBtn" style="background: rgba(85, 89, 51, 0.12); border-color: var(--accent);" onclick="promptSaveToMobile()">
                     📱 Save Portal to Phone (Home Screen)
                 </button>
                 <button class="widget-btn highlight full-width" onclick="openGateDemo()">
@@ -633,7 +634,7 @@
                     </a>
                 </div>
 
-                <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
+                <button class="widget-btn full-width" style="background: rgba(74, 107, 82, 0.15); border-color: var(--accent-green);" onclick="openWhatsApp()">
                     💬 Chat with Reception (WhatsApp)
                 </button>
                 <img src="https://b-cdn.springnest.com/media/img/1cw/411-202401082cee7cc.jpg?crop=1772%2C886%2C0%2C47&width=1772&quality=78" alt="Chat with Reception" class="portal-image">
@@ -696,8 +697,8 @@
                 title.innerText = "📱 Save Portal to Phone";
                 submitBtn.style.display = "none";
                 body.innerHTML = `
-                    <div style="background:#0F172A; padding:1rem; border-radius:10px; border:1px solid var(--border); font-size:0.85rem; line-height:1.6;">
-                        <p style="color:#FDBA74; font-weight:600; margin-bottom:0.5rem;">How to add to your Home Screen:</p>
+                    <div style="background:#FFF; padding:1rem; border-radius:10px; border:1px solid var(--border); font-size:0.85rem; line-height:1.6;">
+                        <p style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">How to add to your Home Screen:</p>
                         <p><strong>iPhone / Safari:</strong> Tap the <em>Share</em> icon at the bottom of your browser, scroll down, and select <strong>"Add to Home Screen"</strong>.</p>
                         <p style="margin-top:0.5rem;"><strong>Android / Chrome:</strong> Tap the <em>Menu</em> (three dots) in the top right corner and select <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>.</p>
                     </div>
@@ -923,17 +924,16 @@
             title.innerText = `👋 Welcome to Familia Guesthouse!`;
             submitBtn.style.display = "none";
 
-            // Welcome popup featuring the attached logo at the top center
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
                     <svg style="width:64px; height:64px; margin:0 auto 0.75rem auto; display:block;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#1E293B" stroke-width="12"/>
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#D97706" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
-                        <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#D97706" stroke-width="6" stroke-linecap="round"/>
-                        <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#D97706">F</text>
-                        <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F8FAFC">G</text>
+                        <circle cx="100" cy="100" r="88" fill="none" stroke="#2C2C2A" stroke-width="12"/>
+                        <circle cx="100" cy="100" r="88" fill="none" stroke="#555933" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
+                        <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#555933" stroke-width="6" stroke-linecap="round"/>
+                        <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#555933">F</text>
+                        <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F3EFEA">G</text>
                     </svg>
-                    <p style="font-size:1.05rem; font-weight:600; color:#FDBA74; margin-bottom:0.6rem;">Hello ${guest}!</p>
+                    <p style="font-size:1.05rem; font-weight:600; color:var(--accent); margin-bottom:0.6rem;">Hello ${guest}!</p>
                     <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
                 </div>
             `;
@@ -1017,7 +1017,7 @@
             if(timestamp) {
                 document.getElementById('checkinTime').innerText = `Checked In: ${timestamp}`;
                 document.getElementById('checkinBtn').innerText = "Logged";
-                document.getElementById('checkinBtn').style.background = "#64748B";
+                document.getElementById('checkinBtn').style.background = "#79756F";
             }
         }
 
@@ -1090,7 +1090,7 @@
             body.innerHTML = `
                 <img src="${ev.image}" class="event-detail-banner" alt="${ev.title}">
                 <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.8rem; line-height:1.4;">${ev.desc}</p>
-                <div style="background:#0F172A; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
+                <div style="background:#FFF; padding:0.8rem; border-radius:10px; border:1px solid var(--border); font-size:0.78rem;">
                     <p style="margin-bottom:0.4rem;">📍 <strong>Address:</strong> ${ev.address}</p>
                     <p>🕒 <strong>Hours:</strong> ${ev.time}</p>
                 </div>
@@ -1142,7 +1142,7 @@
             if(type === 'wifi') {
                 title.innerText = "Wi-Fi Access";
                 body.innerHTML = `
-                    <div style="background:#0F172A; padding:1rem; border-radius:10px; border:1px solid var(--border); margin-bottom:1rem;">
+                    <div style="background:#FFF; padding:1rem; border-radius:10px; border:1px solid var(--border); margin-bottom:1rem;">
                         <p style="font-size:0.85rem; margin-bottom:0.4rem;">Network: <strong>Familia_Guest_WiFi</strong></p>
                         <p style="font-size:0.85rem;">Password: <strong id="wifiPass">Familia2026!</strong></p>
                     </div>
@@ -1182,7 +1182,7 @@
                         const cleanId = `qty-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
                         foodHTML += `
                             <div class="food-item-row">
-                                <span class="food-item-label">${item.name} <strong style="color:#FDBA74;">(R${item.price})</strong></span>
+                                <span class="food-item-label">${item.name} <strong style="color:var(--accent);">(R${item.price})</strong></span>
                                 <div class="qty-controls">
                                     <button class="qty-btn" onclick="updateFoodQty('${item.name}', -1)">-</button>
                                     <span class="qty-val" id="${cleanId}">${foodQuantities[item.name] || 0}</span>
