@@ -63,16 +63,16 @@
         }
 
         .header-logo {
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             object-fit: contain;
             background: rgba(243, 239, 234, 0.95);
             border: 1.5px solid var(--accent);
-            padding: 4px;
+            padding: 2px;
             margin: 0 auto 0.5rem auto;
             display: block;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
         .hero-banner .badge {
@@ -630,10 +630,9 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Accommodation Banner with Header Logo -->
+        <!-- Hero Accommodation Banner with Exact Logo -->
         <div class="hero-banner">
-            <!-- Updated Logo Image matching attached logo -->
-            <img class="header-logo" src="https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78" alt="Familia Guesthouse Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'88\' fill=\'none\' stroke=\'#2C2C2A\' stroke-width=\'12\'/><text x=\'60\' y=\'130\' font-family=\'serif\' font-size=\'90\' fill=\'#555933\'>F</text></svg>'">
+            <img src="logo_familia_5.png" alt="Familia Logo" class="header-logo">
             <span class="badge">Groblersdal • Sekhukhune</span>
             <h1>Familia Guesthouse</h1>
             <div class="guest-welcome-subtitle" id="bannerWelcomeText">Welcome, Guest!</div>
@@ -937,7 +936,7 @@
 
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
-                    <img src="https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78" style="width:72px; height:72px; border-radius:50%; object-fit:contain; background:rgba(243, 239, 234, 0.95); border:1.5px solid var(--accent); padding:4px; margin:0 auto 0.75rem auto; display:block; box-shadow:0 3px 10px rgba(0,0,0,0.3);" alt="Familia Guesthouse Logo">
+                    <img src="logo_familia_5.png" alt="Familia Logo" style="width:72px; height:72px; border-radius:50%; object-fit:contain; background:rgba(243, 239, 234, 0.95); border:1.5px solid var(--accent); padding:2px; margin:0 auto 0.75rem auto; display:block; box-shadow:0 3px 10px rgba(0,0,0,0.2);">
                     <p style="font-size:1.05rem; font-weight:600; color:var(--accent); margin-bottom:0.6rem;">Hello ${guest}!</p>
                     <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
                 </div>
