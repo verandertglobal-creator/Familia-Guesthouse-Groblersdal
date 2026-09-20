@@ -63,16 +63,16 @@
         }
 
         .header-logo {
-            width: 52px;
-            height: 52px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             object-fit: contain;
-            background: rgba(243, 239, 234, 0.9);
+            background: rgba(243, 239, 234, 0.95);
             border: 1.5px solid var(--accent);
-            padding: 3px;
+            padding: 4px;
             margin: 0 auto 0.5rem auto;
             display: block;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
         }
 
         .hero-banner .badge {
@@ -632,14 +632,8 @@
     <div class="widget-container">
         <!-- Hero Accommodation Banner with Header Logo -->
         <div class="hero-banner">
-            <!-- Inline SVG Logo representing the FG badge -->
-            <svg class="header-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#2C2C2A" stroke-width="12"/>
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#555933" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
-                <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#555933" stroke-width="6" stroke-linecap="round"/>
-                <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#555933">F</text>
-                <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F3EFEA">G</text>
-            </svg>
+            <!-- Updated Logo Image matching attached logo -->
+            <img class="header-logo" src="https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78" alt="Familia Guesthouse Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'88\' fill=\'none\' stroke=\'#2C2C2A\' stroke-width=\'12\'/><text x=\'60\' y=\'130\' font-family=\'serif\' font-size=\'90\' fill=\'#555933\'>F</text></svg>'">
             <span class="badge">Groblersdal • Sekhukhune</span>
             <h1>Familia Guesthouse</h1>
             <div class="guest-welcome-subtitle" id="bannerWelcomeText">Welcome, Guest!</div>
@@ -943,13 +937,7 @@
 
             body.innerHTML = `
                 <div style="text-align:center; padding:0.5rem 0;">
-                    <svg style="width:64px; height:64px; margin:0 auto 0.75rem auto; display:block;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#2C2C2A" stroke-width="12"/>
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#555933" stroke-width="10" stroke-dasharray="450 100" transform="rotate(-45 100 100)"/>
-                        <path d="M 35 120 Q 60 140 50 175 M 40 100 Q 55 120 45 150 M 45 80 Q 60 95 40 120" fill="none" stroke="#555933" stroke-width="6" stroke-linecap="round"/>
-                        <text x="68" y="128" font-family="Playfair Display, serif" font-size="90" font-weight="bold" fill="#555933">F</text>
-                        <text x="108" y="138" font-family="Playfair Display, serif" font-size="75" font-weight="bold" fill="#F3EFEA">G</text>
-                    </svg>
+                    <img src="https://b-cdn.springnest.com/media/img/1cw/075-202401077dce516.jpg?crop=1772%2C886%2C0%2C146&width=1772&quality=78" style="width:72px; height:72px; border-radius:50%; object-fit:contain; background:rgba(243, 239, 234, 0.95); border:1.5px solid var(--accent); padding:4px; margin:0 auto 0.75rem auto; display:block; box-shadow:0 3px 10px rgba(0,0,0,0.3);" alt="Familia Guesthouse Logo">
                     <p style="font-size:1.05rem; font-weight:600; color:var(--accent); margin-bottom:0.6rem;">Hello ${guest}!</p>
                     <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">We are delighted to host you in <strong>${room}</strong>. Enjoy our swimming pool, garden braai areas, and air-conditioned rooms. Use this portal to open the gate, order meals, or get in touch with reception.</p>
                 </div>
@@ -1119,7 +1107,6 @@
         function updateFoodQty(itemName, delta) {
             foodQuantities[itemName] = Math.max(0, (foodQuantities[itemName] || 0) + delta);
             
-            // Update all matching elements for this item across the DOM (supports multiple category views & checkout list)
             const cleanNameId = itemName.replace(/[^a-zA-Z0-9]/g, '');
             document.querySelectorAll(`.qty-val-${cleanNameId}`).forEach(el => {
                 el.innerText = foodQuantities[itemName];
@@ -1127,7 +1114,6 @@
 
             calculateOrderTotal();
             
-            // If viewing active cart/summary, refresh summary list if open
             if(currentMenuCategory === 'cart') {
                 renderMenuCategory('cart');
             }
@@ -1360,7 +1346,6 @@
                     </div>
                 `;
             } else if (catKey === 'cart') {
-                // Checkout Cart view showing all selected items with +/- across all sections
                 let selectedList = [];
                 Object.keys(menuData).forEach(cat => {
                     menuData[cat].forEach(item => {
@@ -1420,7 +1405,6 @@
                     </div>
                 `;
             } else {
-                // Specific Category View with Category Pill Bar for easy navigation
                 const categories = Object.keys(menuData);
                 html = `
                     <div class="menu-top-nav">
