@@ -354,6 +354,95 @@
             left: 0;
         }
 
+        /* Menu Navigation & Category Cards */
+        .menu-top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .btn-menu-back {
+            background: rgba(85, 89, 51, 0.12);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .menu-cat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .menu-cat-card {
+            background: #FFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu-cat-card:hover {
+            border-color: var(--accent);
+            background: rgba(85, 89, 51, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .menu-cat-card i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .menu-cat-card span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .category-pill-bar {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .category-pill {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-pill.active {
+            background: var(--accent);
+            color: #FFF;
+            border-color: var(--accent);
+        }
+
         /* Food Category Header */
         .menu-category-header {
             font-size: 0.85rem;
@@ -543,7 +632,6 @@
     <div class="widget-container">
         <!-- Hero Accommodation Banner with Header Logo -->
         <div class="hero-banner">
-            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=200&q=80" alt="Familia Guesthouse Logo" class="header-logo" style="display:none;" />
             <!-- Inline SVG Logo representing the FG badge -->
             <svg class="header-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="100" cy="100" r="88" fill="none" stroke="#2C2C2A" stroke-width="12"/>
@@ -577,7 +665,7 @@
         <!-- TAB 1: QUICK ACCESS SERVICES -->
         <div class="tab-content active" id="quick-access">
             <div class="widget-grid">
-                <!-- Save to Mobile Button moved up above Open Security Gate -->
+                <!-- Save to Mobile Button -->
                 <button class="widget-btn full-width" id="saveToMobileBtn" style="background: rgba(85, 89, 51, 0.12); border-color: var(--accent);" onclick="promptSaveToMobile()">
                     📱 Save Portal to Phone (Home Screen)
                 </button>
@@ -589,7 +677,7 @@
                     📶 Wi-Fi Access
                 </button>
                 <button class="widget-btn" onclick="openModal('breakfast')">
-                    🍳 Food Menu
+                    🍳 Food & Bar Menu
                 </button>
                 <button class="widget-btn" onclick="openModal('facilities')">
                     🏨 Guest Facilities
@@ -672,6 +760,7 @@
         let guestName = "Guest";
         let roomNumber = "Room";
         let currentModalType = "";
+        let currentMenuCategory = "main";
         let deferredPrompt = null;
 
         // Capture PWA install event
@@ -708,18 +797,6 @@
         }
 
         const menuData = {
-            "Beef": [
-                { name: "T-Bone Steak", price: 210 },
-                { name: "Rump Steak", price: 175 },
-                { name: "Oxtail", price: 205 }
-            ],
-            "Fish": [
-                { name: "Deep Fried Hake", price: 180 }
-            ],
-            "Chicken": [
-                { name: "Chicken Schnitzel", price: 160 },
-                { name: "Mexican Chicken", price: 165 }
-            ],
             "Pizzas": [
                 { name: "Mona Lisa Pizza", price: 145 },
                 { name: "Tarantino Pizza", price: 155 },
@@ -734,142 +811,82 @@
                 { name: "Margarita Pizza", price: 110 },
                 { name: "Hawaiian Pizza", price: 135 }
             ],
-            "Cecilia's Salads": [
-                { name: "Nacho Chicken Salad", price: 150 },
-                { name: "BBQ Beef Strip Salad", price: 130 },
-                { name: "Chicken Avo Bacon Salad", price: 130 }
-            ],
-            "Café Favorites (Served with Chips or Salad)": [
-                { name: "Chicken Livers & Toast", price: 98 },
-                { name: "Creamy Chicken & Cheese Tramezzini", price: 120 },
-                { name: "BBQ Beef & Chicken Tramezzini", price: 120 },
-                { name: "Beef Quiche", price: 89 },
-                { name: "Chicken Quiche", price: 89 }
-            ],
-            "Signature Pies": [
-                { name: "Duck Pie", price: 180 },
-                { name: "Beef & Red Wine Pie", price: 175 },
-                { name: "Chicken & Mushroom Pie", price: 175 }
-            ],
-            "Hearty Meals": [
-                { name: "Chicken Schnitzel & Chips", price: 160 },
+            "Beef & Mains": [
+                { name: "T-Bone Steak", price: 210 },
+                { name: "Rump Steak", price: 175 },
+                { name: "Oxtail", price: 205 },
+                { name: "Deep Fried Hake", price: 180 },
+                { name: "Chicken Schnitzel", price: 160 },
+                { name: "Mexican Chicken", price: 165 },
                 { name: "Butter Chicken Curry & Rice", price: 152 },
                 { name: "Beef Jaffle & Chips", price: 105 }
             ],
-            "Burgers": [
+            "Burgers & Tramezzinis": [
                 { name: "Classic Beef Burger", price: 150 },
                 { name: "Chicken Burger", price: 150 },
+                { name: "Creamy Chicken & Cheese Tramezzini", price: 120 },
+                { name: "BBQ Beef & Chicken Tramezzini", price: 120 },
                 { name: "Add-On: Egg", price: 15 },
                 { name: "Add-On: Bacon", price: 25 }
+            ],
+            "Salads & Quiches": [
+                { name: "Nacho Chicken Salad", price: 150 },
+                { name: "BBQ Beef Strip Salad", price: 130 },
+                { name: "Chicken Avo Bacon Salad", price: 130 },
+                { name: "Beef Quiche", price: 89 },
+                { name: "Chicken Quiche", price: 89 },
+                { name: "Chicken Livers & Toast", price: 98 }
+            ],
+            "Pies & Light": [
+                { name: "Duck Pie", price: 180 },
+                { name: "Beef & Red Wine Pie", price: 175 },
+                { name: "Chicken & Mushroom Pie", price: 175 }
             ],
             "Sweets & Desserts": [
                 { name: "Chocolate Croissant", price: 40 },
                 { name: "Chocolate Vulcano & Ice Cream", price: 55 },
                 { name: "Cake of the Day", price: 65 }
             ],
-            "Hot Drinks": [
+            "Hot Drinks & Shakes": [
                 { name: "Americano", price: 36 },
                 { name: "Cappuccino", price: 45 },
                 { name: "Latte", price: 48 },
                 { name: "Hot Chocolate", price: 42 },
                 { name: "Almond Milk Alternative", price: 15 },
-                { name: "Extra Espresso Shot", price: 15 }
-            ],
-            "Milkshakes": [
+                { name: "Extra Espresso Shot", price: 15 },
                 { name: "Chocolate Milkshake", price: 49 },
-                { name: "Bubblegum Milkshake", price: 49 },
-                { name: "Banana Milkshake", price: 49 },
                 { name: "Strawberry Milkshake", price: 49 },
-                { name: "Salted Caramel Milkshake", price: 49 },
                 { name: "Vanilla Milkshake", price: 49 },
                 { name: "Coffee Milkshake", price: 49 }
             ],
-            "La Bush Bar - Wines": [
+            "Wines & Bubbly": [
                 { name: "Fynbos Merlot 3L", price: 370 },
-                { name: "Fynbos Pinotage 3L", price: 370 },
                 { name: "Fynbos Chenin Blanc 3L", price: 370 },
-                { name: "Boekenhoutskloof The Choc Blok", price: 950 },
-                { name: "Raka Malbec", price: 429 },
                 { name: "Rupert & Rothschild Classique", price: 390 },
                 { name: "Kanonkop Kadette", price: 230 },
-                { name: "Zonneblom Pinotage", price: 250 },
-                { name: "Raka Quinery", price: 429 },
-                { name: "J.C. Le Roux La Chanson", price: 200 },
-                { name: "Krone Kaaimansgat Blanc de Blancs", price: 750 },
-                { name: "Spier Pinotage", price: 219 },
                 { name: "Spier Merlot", price: 219 },
-                { name: "Slanghoek Cabernet Sauvignon", price: 229 },
-                { name: "Fat Bastard", price: 349 },
                 { name: "Spier Sauvignon Blanc", price: 200 },
-                { name: "Kleine Salze Sauvignon Blanc", price: 200 },
-                { name: "Boekenhoutskloof", price: 1200 },
-                { name: "Diemersdal Sauv Blanc", price: 200 },
-                { name: "Durbanville Hills Chardonnay", price: 200 },
-                { name: "Slanghoek Chenin Blanc", price: 200 },
-                { name: "Nederburg Baronne", price: 209 },
-                { name: "Nederburg Merlot", price: 209 },
-                { name: "Laborie Merlot", price: 209 },
-                { name: "HPF Kleinboet", price: 350 },
-                { name: "Jakkalsvlei Moscato Rose", price: 180 },
-                { name: "Jakkalsvlei Merlot Red", price: 270 },
-                { name: "Jakkalsvlei Moscato White", price: 180 },
-                { name: "Jakkalsvlei Pinotage Red", price: 270 },
+                { name: "J.C. Le Roux La Chanson", price: 200 },
                 { name: "Wine Per Glass", price: 55 }
             ],
-            "La Bush Bar - Beers & Ciders": [
+            "Beers & Ciders": [
                 { name: "Black Label", price: 30 },
-                { name: "Castle Lager", price: 30 },
                 { name: "Castle Lite", price: 35 },
-                { name: "Flying Fish", price: 35 },
-                { name: "Brutal Fruit", price: 30 },
-                { name: "Amstel", price: 35 },
                 { name: "Heineken", price: 35 },
-                { name: "Hunter's Dry", price: 40 },
-                { name: "Hunters Gold", price: 35 },
-                { name: "Savannah Dry (500ml)", price: 45 },
-                { name: "Ice Tropez", price: 130 },
                 { name: "Windhoek Draught (440ml)", price: 45 },
-                { name: "Windhoek Draught (500ml)", price: 40 },
-                { name: "Hunter's Extreme", price: 40 },
+                { name: "Savannah Dry (500ml)", price: 45 },
                 { name: "Corona", price: 45 },
-                { name: "Corona Zero", price: 38 },
-                { name: "Stella", price: 35 }
+                { name: "Hunters Dry", price: 40 }
             ],
-            "La Bush Bar - Spirits Per Tot": [
+            "Spirits & Cocktails": [
                 { name: "Gordon's Gin", price: 25 },
                 { name: "Richelieu Brandy", price: 30 },
-                { name: "Red Square", price: 45 },
-                { name: "Wildebeest Brandy", price: 30 },
                 { name: "Klipdrift", price: 30 },
-                { name: "Klipdrift Premium", price: 35 },
-                { name: "Skyy Peach", price: 30 },
-                { name: "Skyy Rasberry", price: 30 },
-                { name: "Spice Gold", price: 30 },
-                { name: "Red Heart", price: 30 },
-                { name: "Johnnie Walker", price: 35 },
-                { name: "The Glenlivet 15 Year", price: 65 },
-                { name: "Dimple Haig 15 Year Old", price: 45 },
-                { name: "Bell's Scotch", price: 35 },
-                { name: "Chivas Regal 12 Year Old", price: 35 },
-                { name: "Chivas Regal XV", price: 35 },
-                { name: "Tequila", price: 40 },
-                { name: "Loch Lomond", price: 40 },
-                { name: "Jack Daniel's", price: 35 },
-                { name: "Glenfiddich", price: 40 },
                 { name: "Jameson Irish", price: 40 },
-                { name: "Hennessy VS Cognac", price: 45 }
-            ],
-            "La Bush Bar - Cocktails & Mocktails": [
+                { name: "Jack Daniel's", price: 35 },
                 { name: "Tequila Sunrise", price: 85 },
                 { name: "Strawberry Daiquiri", price: 85 },
-                { name: "Old Fashioned", price: 85 },
-                { name: "Pina Colada", price: 85 },
-                { name: "Shirley Temple Mocktail", price: 45 },
-                { name: "Fruit Mocktail", price: 45 },
-                { name: "Virgin Mojito", price: 45 },
-                { name: "Elderflower Gin", price: 60 },
-                { name: "Blood Orange Gin", price: 70 },
-                { name: "La Bush Craft Cocktail", price: 70 }
+                { name: "Virgin Mojito", price: 45 }
             ]
         };
 
@@ -1101,9 +1118,19 @@
 
         function updateFoodQty(itemName, delta) {
             foodQuantities[itemName] = Math.max(0, (foodQuantities[itemName] || 0) + delta);
-            const el = document.getElementById(`qty-${itemName.replace(/[^a-zA-Z0-9]/g, '')}`);
-            if (el) el.innerText = foodQuantities[itemName];
+            
+            // Update all matching elements for this item across the DOM (supports multiple category views & checkout list)
+            const cleanNameId = itemName.replace(/[^a-zA-Z0-9]/g, '');
+            document.querySelectorAll(`.qty-val-${cleanNameId}`).forEach(el => {
+                el.innerText = foodQuantities[itemName];
+            });
+
             calculateOrderTotal();
+            
+            // If viewing active cart/summary, refresh summary list if open
+            if(currentMenuCategory === 'cart') {
+                renderMenuCategory('cart');
+            }
         }
 
         function calculateOrderTotal() {
@@ -1166,47 +1193,9 @@
                 body.innerHTML = facHTML;
                 submitBtn.style.display = "none";
             } else if(type === 'breakfast') {
-                title.innerText = `Order Food & Drinks (${roomNumber})`;
-                let foodHTML = `
-                    <div class="transparency-box">
-                        <div class="transparency-title">🔍 Mains & Sides Info</div>
-                        <ul class="transparency-list">
-                            <li><strong>Beef, Fish & Chicken Mains:</strong> Includes choice of two sides (Deep Fried Fries, Onion Rings, Spinach Pocket & Pumpkin Pie, Rice, Salad) & Complimentary Dessert.</li>
-                        </ul>
-                    </div>
-                `;
-                
-                Object.keys(menuData).forEach(category => {
-                    foodHTML += `<div class="menu-category-header">${category}</div>`;
-                    menuData[category].forEach(item => {
-                        const cleanId = `qty-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
-                        foodHTML += `
-                            <div class="food-item-row">
-                                <span class="food-item-label">${item.name} <strong style="color:var(--accent);">(R${item.price})</strong></span>
-                                <div class="qty-controls">
-                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', -1)">-</button>
-                                    <span class="qty-val" id="${cleanId}">${foodQuantities[item.name] || 0}</span>
-                                    <button class="qty-btn" onclick="updateFoodQty('${item.name}', 1)">+</button>
-                                </div>
-                            </div>
-                        `;
-                    });
-                });
-
-                foodHTML += `
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem; display:block;">Sides Choice & Special Instructions:</label>
-                    <input type="text" id="sideNotes" placeholder="e.g. Deep Fried Fries, Onion Rings...">
-
-                    <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">Preferred Serving Time:</label>
-                    <input type="time" id="bfTime" value="18:30">
-
-                    <div class="order-total-bar">
-                        <span>Total Amount:</span>
-                        <span id="orderTotalAmount">R0.00</span>
-                    </div>
-                `;
-                body.innerHTML = foodHTML;
-                calculateOrderTotal();
+                title.innerText = `Food & Bar Menu (${roomNumber})`;
+                currentMenuCategory = 'main';
+                renderMenuCategory('main');
             } else if(type === 'housekeeping') {
                 title.innerText = `Housekeeping (${roomNumber})`;
                 body.innerHTML = `
@@ -1313,6 +1302,179 @@
             modal.style.display = 'flex';
         }
 
+        function renderMenuCategory(catKey) {
+            currentMenuCategory = catKey;
+            const body = document.getElementById('modalBody');
+            const submitBtn = document.getElementById('modalSubmitBtn');
+            submitBtn.style.display = "block";
+
+            let html = '';
+
+            if (catKey === 'main') {
+                html = `
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem; text-align:center;">Select a menu section below to browse items:</p>
+                    <div class="menu-cat-grid">
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Pizzas')">
+                            <i class="bi bi-pie-chart"></i>
+                            <span>Pizzas</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Beef & Mains')">
+                            <i class="bi bi-egg-fried"></i>
+                            <span>Beef & Mains</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Burgers & Tramezzinis')">
+                            <i class="bi bi-circle"></i>
+                            <span>Burgers & Tramaz</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Salads & Quiches')">
+                            <i class="bi bi-flower1"></i>
+                            <span>Salads & Quiches</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Pies & Light')">
+                            <i class="bi bi-box"></i>
+                            <span>Pies & Light</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Sweets & Desserts')">
+                            <i class="bi bi-cake"></i>
+                            <span>Sweets & Desserts</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Hot Drinks & Shakes')">
+                            <i class="bi bi-cup-hot"></i>
+                            <span>Hot Drinks & Shakes</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Wines & Bubbly')">
+                            <i class="bi bi-cup"></i>
+                            <span>Wines & Bubbly</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Beers & Ciders')">
+                            <i class="bi bi-badge-ad"></i>
+                            <span>Beers & Ciders</span>
+                        </div>
+                        <div class="menu-cat-card" onclick="renderMenuCategory('Spirits & Cocktails')">
+                            <i class="bi bi-wine"></i>
+                            <span>Spirits & Cocktails</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-submit" style="background: var(--accent-green);" onclick="renderMenuCategory('cart')">🛒 View Cart & Checkout Summary</button>
+                    </div>
+                `;
+            } else if (catKey === 'cart') {
+                // Checkout Cart view showing all selected items with +/- across all sections
+                let selectedList = [];
+                Object.keys(menuData).forEach(cat => {
+                    menuData[cat].forEach(item => {
+                        const qty = foodQuantities[item.name] || 0;
+                        if (qty > 0) {
+                            selectedList.push({ ...item, category: cat, qty: qty });
+                        }
+                    });
+                });
+
+                html = `
+                    <div class="menu-top-nav">
+                        <button class="btn-menu-back" onclick="renderMenuCategory('main')"><i class="bi bi-arrow-left"></i> Menu Main</button>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent);">Order Review</span>
+                    </div>
+                `;
+
+                if (selectedList.length === 0) {
+                    html += `
+                        <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted);">
+                            <i class="bi bi-cartX" style="font-size: 2.5rem; display:block; margin-bottom: 0.5rem;"></i>
+                            <p style="font-size: 0.85rem;">Your order is currently empty. Browse categories to add items.</p>
+                        </div>
+                    `;
+                } else {
+                    html += `<p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.6rem;">Review selected items, beverages, and quantities:</p>`;
+                    selectedList.forEach(i => {
+                        const cleanId = i.name.replace(/[^a-zA-Z0-9]/g, '');
+                        html += `
+                            <div class="food-item-row">
+                                <div class="food-item-label">
+                                    <strong>${i.name}</strong><br>
+                                    <span style="font-size:0.7rem; color:var(--text-muted);">[${i.category}] • R${i.price * i.qty}</span>
+                                </div>
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="updateFoodQty('${i.name}', -1)">-</button>
+                                    <span class="qty-val qty-val-${cleanId}">${i.qty}</span>
+                                    <button class="qty-btn" onclick="updateFoodQty('${i.name}', 1)">+</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += `
+                        <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem; display:block;">Sides Choice & Special Instructions:</label>
+                        <input type="text" id="sideNotes" placeholder="e.g. Deep Fried Fries, Onion Rings...">
+
+                        <label style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">Preferred Serving Time:</label>
+                        <input type="time" id="bfTime" value="18:30">
+                    `;
+                }
+
+                html += `
+                    <div class="order-total-bar">
+                        <span>Total Amount:</span>
+                        <span id="orderTotalAmount">R${calculateOrderTotal().toFixed(2)}</span>
+                    </div>
+                `;
+            } else {
+                // Specific Category View with Category Pill Bar for easy navigation
+                const categories = Object.keys(menuData);
+                html = `
+                    <div class="menu-top-nav">
+                        <button class="btn-menu-back" onclick="renderMenuCategory('main')"><i class="bi bi-arrow-left"></i> Menu Main</button>
+                        <button class="btn-menu-back" style="background: rgba(74, 107, 82, 0.15); border-color: var(--accent-green); color: var(--accent-green);" onclick="renderMenuCategory('cart')">🛒 Cart (<span id="cartCountBadge">0</span>)</button>
+                    </div>
+
+                    <div class="category-pill-bar">
+                `;
+
+                categories.forEach(c => {
+                    html += `<div class="category-pill ${c === catKey ? 'active' : ''}" onclick="renderMenuCategory('${c}')">${c}</div>`;
+                });
+
+                html += `</div><div class="menu-category-header">${catKey}</div>`;
+
+                if(catKey === 'Beef & Mains') {
+                    html += `
+                        <div class="transparency-box" style="margin-bottom:0.8rem; padding:0.6rem;">
+                            <div class="transparency-title" style="font-size:0.75rem;">🔍 Mains Info</div>
+                            <p style="font-size:0.75rem; color:var(--text-main);">Includes choice of two sides (Deep Fried Fries, Onion Rings, Spinach Pocket & Pumpkin Pie, Rice, Salad) & Complimentary Dessert.</p>
+                        </div>
+                    `;
+                }
+
+                menuData[catKey].forEach(item => {
+                    const cleanId = item.name.replace(/[^a-zA-Z0-9]/g, '');
+                    const currentQty = foodQuantities[item.name] || 0;
+                    html += `
+                        <div class="food-item-row">
+                            <div class="food-item-label">
+                                <strong>${item.name}</strong><br>
+                                <span style="font-size:0.72rem; color:var(--accent);">R${item.price}</span>
+                            </div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateFoodQty('${item.name}', -1)">-</button>
+                                <span class="qty-val qty-val-${cleanId}">${currentQty}</span>
+                                <button class="qty-btn" onclick="updateFoodQty('${item.name}', 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-submit" style="background: var(--accent-green);" onclick="renderMenuCategory('cart')">View Order & Checkout Summary</button>
+                    </div>
+                `;
+            }
+
+            body.innerHTML = html;
+            calculateOrderTotal();
+        }
+
         function copyWifi() {
             navigator.clipboard.writeText("Familia2026!");
             alert("Wi-Fi password copied!");
@@ -1324,7 +1486,7 @@
             let message = "";
 
             if (currentModalType === 'breakfast') {
-                const time = document.getElementById('bfTime').value;
+                const time = document.getElementById('bfTime') ? document.getElementById('bfTime').value : "18:30";
                 const sideNotes = document.getElementById('sideNotes') ? document.getElementById('sideNotes').value.trim() : "";
                 const grandTotal = calculateOrderTotal();
                 
